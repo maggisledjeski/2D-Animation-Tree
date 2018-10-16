@@ -1,5 +1,5 @@
 LDLIBS = -lglut -lGL -lGLU -lX11 -lm
-OBJS = myinit.o display.o #put object files here put a space to separate
+OBJS = myinit.o display.o drawtree.o #put object files here put a space to separate
 
 run_fast: main.o
 	c++ main.o $(LDLIBS) $(OBJS)
@@ -12,6 +12,9 @@ myinit.o: myinit.cpp
 
 display.o: display.cpp
 	c++ -c display.cpp
+
+drawtree.o: drawtree.cpp
+	c++ -c drawtree.cpp
 
 clean:
 	rm *.o
