@@ -37,6 +37,14 @@ void MidpointCircle(int radius, int cx, int cy)
         glPointSize(1);
         glBegin(GL_POINTS);
         glVertex2i(x+cx,y+cy);
+        glVertex2i(y+cy,x+cx);
+        glVertex2i(-y+cy,x+cx);
+        glVertex2i(x+cx,-y+cy);
+        glVertex2i(-x+cx,-y+cy);
+        glVertex2i(-y+cy,-x+cx);
+        glVertex2i(y+cy,-x+cx);
+        glVertex2i(-x+cx,y+cy);
+
         glEnd();
         glFlush();
         //WritePixel(x,y);
