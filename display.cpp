@@ -1,6 +1,6 @@
 #include "includes.h"
 #include "constants.h"
-//#include "structs.h"
+#include "structs.h"
 #include "prototypes.h"
 
 void display( void )
