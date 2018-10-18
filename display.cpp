@@ -11,7 +11,7 @@ void display( void )
     
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
     drawTree();
-    MidpointCircle(200,400,400);
+    //MidpointCircle(200,400,400);
     //drawReverse(200,400,400);
     glFlush();
     

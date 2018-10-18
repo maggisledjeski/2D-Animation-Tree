@@ -30,12 +30,12 @@ void MidpointCircle(int radius, int cx, int cy)
     while (y>x) 
     {
         if ( d <= 0 ) 
-        {        // Choose E
+        {        
             d += x * 2.0 + 3;
             x++;
         }
         else 
-        {                 // Choose SE
+        {                 
             d += (x-y)*2.0+5;
             x++;
             y--;
