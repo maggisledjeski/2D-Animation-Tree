@@ -2,7 +2,7 @@
 #include "includes.h"
 #include "constants.h"
 #include "structs.h"
-#include "prototypes.h" 
+#include "prototypes.h"
 using namespace std;
 
 int circumference(int radius)
@@ -14,15 +14,17 @@ int circumference(int radius)
 
 void MidpointCircle(int radius, int cx, int cy)
 {
-    float x, y;
+    int x, y;
     float d;
 
     x = 0;
     y = radius;
     int numPoints = circumference(radius);
     int arrayPoints = numPoints/8;
-	vertex seg1 [arrayPoints];
-	vertex *point = new vertex;
+
+	vertex points[arrayPoints];
+	vertex *pointPtr = NULL;
+	pointPtr = points;
 	d = 5.0 / 4.0 - radius;
     int count = 0;
     while (y>x) 
@@ -42,10 +44,12 @@ void MidpointCircle(int radius, int cx, int cy)
         glBegin(GL_POINTS);
 		//first quarter
         glVertex2i(x+cx,y+cy);	//segment 1
-        */point->x = x+cx;
-		point->y = y+cy;
-		seg1[count].x = point->x;
-		seg1[count].y = point->y;
+        */
+		pointPtr->x = x+cx;
+		pointPtr->y = y+cy;
+		pointPtr->z = 0;
+		pointPtr++;
+		count++;
 		/*glVertex2i(y+cy,x+cx);	//segment 2
         //second quarter
 		glVertex2i(y+cy,-x+cx); //segment 3
@@ -60,17 +64,29 @@ void MidpointCircle(int radius, int cx, int cy)
         glEnd();
         glFlush();*/
     }
+	//cout << count << endl;
 	glPointSize(1);
 	glColor3f(0.0, 0.0, 0.0 );
     glBegin(GL_POINTS);
+	pointPtr = points;
 	int i = 0;
 	while(i != count)
 	{
-		vertex *p = new vertex;
-			p->x = seg1[i].x;
-			p->y = seg1[i].y;
-		glVertex2i(p->x,p->y);
+		glVertex2i(pointPtr->x, pointPtr->y);
+		pointPtr++;
 		i++;
+	}
+	glEnd();
+	glFlush();
+	glPointSize(1);
+    glColor3f(0.0, 0.0, 0.0 );
+    glBegin(GL_POINTS);
+	int r = i;
+	while(r != 0)
+	{
+		glVertex2i(pointPtr->y, pointPtr->x);
+		pointPtr--;
+        r--;
 	}
 	glEnd();
 	glFlush();
