@@ -21,7 +21,8 @@ void drawTree()
 	glEnd();
 	glFlush();
 	
-	circle(200,600,450);
+	vertex *tc;
+	tc = circle(200,600,450);
 		
 	
 }
@@ -54,7 +55,7 @@ void lineDDA (int x0, int y0, int xEnd, int yEnd)
 	}
 }
 
-void circle(int radius, int cx, int cy)
+vertex *circle(int radius, int cx, int cy)
 {
     int x, y;
     float d;
@@ -169,4 +170,5 @@ void circle(int radius, int cx, int cy)
 	}
 	glEnd();
     glFlush();	
+	return q1;
 }
