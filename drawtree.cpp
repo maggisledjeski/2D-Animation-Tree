@@ -4,8 +4,19 @@
 #include "prototypes.h"
 using namespace std;
 
-void drawTree()
+void drawTree(struct vertex * treePoints)
 {
+	//int arraySize = numPoints(200,600,450);
+	//struct vertex * treePoints = (struct vertex *) malloc((numPoints+10)*sizeof(struct vertex));
+	treePoints->x = 458;
+	treePoints->y = 591;
+	treePoints->w = 1;
+	treePoints++;
+	treePoints->x = 600;
+    treePoints->y = 475;
+    treePoints->w = 1;
+	treePoints++;
+
 	glColor3f(0.0,0.0,0.0);
 	glBegin(GL_LINES);
 	glVertex2i(458,591);
@@ -21,8 +32,7 @@ void drawTree()
 	glEnd();
 	glFlush();
 	
-	vertex *tc;
-	tc = circle(200,600,450);
+	circle(200,600,450,treePoints);
 		
 	
 }
@@ -55,7 +65,7 @@ void lineDDA (int x0, int y0, int xEnd, int yEnd)
 	}
 }
 
-vertex *circle(int radius, int cx, int cy)
+void circle(int radius, int cx, int cy, struct vertex tp[])
 {
     int x, y;
     float d;
@@ -70,7 +80,7 @@ vertex *circle(int radius, int cx, int cy)
     d = 5.0 / 4.0 - radius;
     pointPtr->x = x;
     pointPtr->y = y;
-    pointPtr->z = 1;
+    pointPtr->w = 1;
     pointPtr++;
 	int count = 1;
     while (y>x)
@@ -88,7 +98,7 @@ vertex *circle(int radius, int cx, int cy)
         }
 		pointPtr->x = x;
         pointPtr->y = y;
-        pointPtr->z = 1;
+        pointPtr->w = 1;
         pointPtr++;
         count++;
 	}
@@ -130,27 +140,27 @@ vertex *circle(int radius, int cx, int cy)
 		//fifth segment
 		q1[c].x = cx-pointPtr->x;
         q1[c].y = cy-pointPtr->y;
-        q1[c].z = startPtr->z;
+        q1[c].w = startPtr->w;
 		//fourth segment
 		q1[c+count].x = cx+startPtr->x;
         q1[c+count].y = cy-startPtr->y;
-        q1[c+count].z = startPtr->z;
+        q1[c+count].w = startPtr->w;
 		//third segment 
 		q1[c+2*count].x = cx+pointPtr->y;
         q1[c+2*count].y = cy-pointPtr->x;
-        q1[c+2*count].z = startPtr->z;
+        q1[c+2*count].w = startPtr->w;
 		//second segment
 		q1[c+3*count].x = cx+startPtr->y;
         q1[c+3*count].y = cy+startPtr->x;
-        q1[c+3*count].z = startPtr->z;
+        q1[c+3*count].w = startPtr->w;
 		//first segment 
 		q1[c+4*count].x = cx+pointPtr->x;
         q1[c+4*count].y = cy+pointPtr->y;
-        q1[c+4*count].z = pointPtr->z;
+        q1[c+4*count].w = pointPtr->w;
         //eighth segment put in last
         q1[c+5*count].x = cx-startPtr->x;
         q1[c+5*count].y = cy+startPtr->y;
-        q1[c+5*count].z = startPtr->z;
+        q1[c+5*count].w = startPtr->w;
 		startPtr++;
         pointPtr--;
         c++;
@@ -170,5 +180,34 @@ vertex *circle(int radius, int cx, int cy)
 	}
 	glEnd();
     glFlush();	
-	return q1;
+	return ;
+}
+
+int numPoints(int radius, int cx, int cy)
+{
+    int x, y;
+    float d;
+
+    x = 0;
+    y = radius;
+    d = 5.0 / 4.0 - radius;
+    
+    int count = 1;
+    while (y>x)
+    {
+        if ( d <= 0 )
+        {
+            d += x * 2.0 + 3;
+            x++;
+        }
+        else
+        {
+            d += (x-y)*2.0+5;
+            x++;
+            y--;
+        }
+        count++;
+    }
+    cout << "count: " << count << endl;
+	return count;
 }

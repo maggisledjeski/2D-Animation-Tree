@@ -47,7 +47,7 @@ void MidpointCircle(int radius, int cx, int cy)
         */
 		pointPtr->x = x+cx;
 		pointPtr->y = y+cy;
-		pointPtr->z = 0;
+		pointPtr->w = 0;
 		pointPtr++;
 		count++;
 		/*glVertex2i(y+cy,x+cx);	//segment 2

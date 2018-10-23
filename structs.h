@@ -1,6 +1,6 @@
 
 
 struct vertex {
-    int x, y, z;
+    int x, y, w;
 };
 
