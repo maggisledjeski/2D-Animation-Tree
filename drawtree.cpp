@@ -6,12 +6,21 @@ using namespace std;
 
 void drawTree()
 {
-	lineDDA(200,500,650,475);
-    lineDDA(200,500,200,400);
-	lineDDA(200,400,650,425);
-	circle(250,500,500);
+	glColor3f(0.0,0.0,0.0);
+	glBegin(GL_LINES);
+	glVertex2i(200,500);
+    glVertex2i(600,475);
+    glVertex2i(200,500);
+	glVertex2i(200,400);
+	glVertex2i(200,400);
+	glVertex2i(600,425);
+	glEnd();
+	glFlush();
+	
+	circle(200,600,450);
 }
 
+//not used
 void lineDDA (int x0, int y0, int xEnd, int yEnd)
 {
 	int dx = xEnd - x0,  dy = yEnd - y0, steps, k, _x, _y;
@@ -48,8 +57,7 @@ void circle(int radius, int cx, int cy)
     y = radius;
     int numPoints = circumference(radius);
     int arrayPoints = numPoints/8;
-	//cout << "arrayPoints: " << arrayPoints << endl;
-    vertex points[arrayPoints];
+	vertex points[arrayPoints];
     vertex *pointPtr = NULL;
     pointPtr = points;
     d = 5.0 / 4.0 - radius;
@@ -105,12 +113,12 @@ void circle(int radius, int cx, int cy)
         q1[c].y = cy+startPtr->y;
         q1[c].z = startPtr->z;
 		//seventh segment
-		q1[c+count].x = cy-pointPtr->y;
-        q1[c+count].y = cx+pointPtr->x;
+		q1[c+count].x = cx-pointPtr->y;
+        q1[c+count].y = cy+pointPtr->x;
         q1[c+count].z = startPtr->z;
 		//sixth segment
-		q1[c+2*count].x = cy-startPtr->y;
-        q1[c+2*count].y = cx-startPtr->x;
+		q1[c+2*count].x = cx-startPtr->y;
+        q1[c+2*count].y = cy-startPtr->x;
         q1[c+2*count].z = startPtr->z;
 		//fifth segment
 		q1[c+3*count].x = cx-pointPtr->x;
@@ -121,12 +129,12 @@ void circle(int radius, int cx, int cy)
         q1[c+4*count].y = cy-startPtr->y;
         q1[c+4*count].z = startPtr->z;
 		//third segment
-		q1[c+5*count].x = cy+pointPtr->y;
-        q1[c+5*count].y = cx-pointPtr->x;
+		q1[c+5*count].x = cx+pointPtr->y;
+        q1[c+5*count].y = cy-pointPtr->x;
         q1[c+5*count].z = startPtr->z;
 		//second segment
-		q1[c+6*count].x = cy+startPtr->y;
-        q1[c+6*count].y = cx+startPtr->x;
+		q1[c+6*count].x = cx+startPtr->y;
+        q1[c+6*count].y = cy+startPtr->x;
         q1[c+6*count].z = startPtr->z;
 		//first segment
 		q1[c+7*count].x = cx+pointPtr->x;
