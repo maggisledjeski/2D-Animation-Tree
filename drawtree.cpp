@@ -53,8 +53,8 @@ void circle(int radius, int cx, int cy)
     vertex *pointPtr = NULL;
     pointPtr = points;
     d = 5.0 / 4.0 - radius;
-    pointPtr->x = x+cx;
-    pointPtr->y = y+cy;
+    pointPtr->x = x;
+    pointPtr->y = y;
     pointPtr->z = 1;
     pointPtr++;
 	int count = 1;
@@ -71,8 +71,8 @@ void circle(int radius, int cx, int cy)
             x++;
             y--;
         }
-		pointPtr->x = x+cx;
-        pointPtr->y = y+cy;
+		pointPtr->x = x;
+        pointPtr->y = y;
         pointPtr->z = 1;
         pointPtr++;
         count++;
@@ -114,9 +114,37 @@ void circle(int radius, int cx, int cy)
     }*/
 	//vertex *endPoint = pointPtr;
 	pointPtr--;
+
+	int num = (4*count);
+    vertex q1[num];
+	vertex *startPtr = NULL;
+    startPtr = points;
+	int c = 0;
+    while(c != count)
+    {
+		q1[c].x = cx+startPtr->x;
+        q1[c].y = cy-startPtr->y;
+        q1[c].z = startPtr->z;
+		//third segment
+		q1[c+count].x = cy+pointPtr->y;
+        q1[c+count].y = cx-pointPtr->x;
+        q1[c+count].z = startPtr->z;
+		//second segment
+		q1[c+2*count].x = cy+startPtr->y;
+        q1[c+2*count].y = cx+startPtr->x;
+        q1[c+2*count].z = startPtr->z;
+		//first segment
+		q1[c+3*count].x = cx+pointPtr->x;
+        q1[c+3*count].y = cy+pointPtr->y;
+        q1[c+3*count].z = pointPtr->z;
+        startPtr++;
+        pointPtr--;
+        c++;
+	}
+
 	//pointPtr--;
 	//endPoint = pointPtr;
-	vertex *startPtr = NULL;
+	/*vertex *startPtr = NULL;
 	startPtr = points;
 	//cout << endPoint->x << " " << endPoint->y << endl;
 	//cout << pointPtr->x << " " << pointPtr->y << endl;
@@ -130,8 +158,8 @@ void circle(int radius, int cx, int cy)
 	while(c != count)
 	{
 		//fourth segment
-		q1[c].x = startPtr->x;
-        q1[c].y = -y-radius+pointPtr->y;
+		q1[c].x = startPtr->x;//startPtr->x;
+        q1[c].y = cy+-startPtr->y;//-y+startPtr->y;//-y-radius+pointPtr->y;
         q1[c].z = startPtr->z;
 		//third segment
 		q1[c+count].x = pointPtr->y;
@@ -148,7 +176,7 @@ void circle(int radius, int cx, int cy)
 		startPtr++;
 		pointPtr--;
 		c++;
-	}
+	}*/
 	cout << "end, should start with 750 500" << endl;
 	int f = 0;
 	while(f != num)
