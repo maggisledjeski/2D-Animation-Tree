@@ -8,16 +8,22 @@ void drawTree()
 {
 	glColor3f(0.0,0.0,0.0);
 	glBegin(GL_LINES);
+	glVertex2i(458,591);
+	glVertex2i(600,475);
+	glVertex2i(600,475);
 	glVertex2i(200,500);
-    glVertex2i(600,475);
     glVertex2i(200,500);
 	glVertex2i(200,400);
 	glVertex2i(200,400);
 	glVertex2i(600,425);
+	glVertex2i(600,425);
+    glVertex2i(458,309);
 	glEnd();
 	glFlush();
 	
 	circle(200,600,450);
+		
+	
 }
 
 //not used
@@ -92,7 +98,7 @@ void circle(int radius, int cx, int cy)
     pointPtr = points;
     vertex *endPoint = NULL;
 	int i = 0;
-    while(i != count)
+    while(i < count)//!= count)
     {
         //cout << pointPtr->x << " " << pointPtr->y << endl;
 		//glVertex2i(pointPtr->x, pointPtr->y);
@@ -101,14 +107,14 @@ void circle(int radius, int cx, int cy)
     }
 	pointPtr--;
 
-	int num = (8*count);
+	int num = (6*count);
     vertex q1[num];
 	vertex *startPtr = NULL;
     startPtr = points;
 	int c = 0;
-    while(c != count)
+    while(c < count)//!= count)
     {
-		//eighth segment
+		/*//eighth segment
 		q1[c].x = cx-startPtr->x;
         q1[c].y = cy+startPtr->y;
         q1[c].z = startPtr->z;
@@ -119,35 +125,44 @@ void circle(int radius, int cx, int cy)
 		//sixth segment
 		q1[c+2*count].x = cx-startPtr->y;
         q1[c+2*count].y = cy-startPtr->x;
-        q1[c+2*count].z = startPtr->z;
+        q1[c+2*count].z = startPtr->z;*/
 		//fifth segment
-		q1[c+3*count].x = cx-pointPtr->x;
-        q1[c+3*count].y = cy-pointPtr->y;
-        q1[c+3*count].z = startPtr->z;
+		q1[c].x = cx-pointPtr->x;
+        q1[c].y = cy-pointPtr->y;
+        q1[c].z = startPtr->z;
 		//fourth segment
-		q1[c+4*count].x = cx+startPtr->x;
-        q1[c+4*count].y = cy-startPtr->y;
-        q1[c+4*count].z = startPtr->z;
-		//third segment
-		q1[c+5*count].x = cx+pointPtr->y;
-        q1[c+5*count].y = cy-pointPtr->x;
-        q1[c+5*count].z = startPtr->z;
+		q1[c+count].x = cx+startPtr->x;
+        q1[c+count].y = cy-startPtr->y;
+        q1[c+count].z = startPtr->z;
+		//third segment 
+		q1[c+2*count].x = cx+pointPtr->y;
+        q1[c+2*count].y = cy-pointPtr->x;
+        q1[c+2*count].z = startPtr->z;
 		//second segment
-		q1[c+6*count].x = cx+startPtr->y;
-        q1[c+6*count].y = cy+startPtr->x;
-        q1[c+6*count].z = startPtr->z;
-		//first segment
-		q1[c+7*count].x = cx+pointPtr->x;
-        q1[c+7*count].y = cy+pointPtr->y;
-        q1[c+7*count].z = pointPtr->z;
-        startPtr++;
+		q1[c+3*count].x = cx+startPtr->y;
+        q1[c+3*count].y = cy+startPtr->x;
+        q1[c+3*count].z = startPtr->z;
+		//first segment 
+		q1[c+4*count].x = cx+pointPtr->x;
+        q1[c+4*count].y = cy+pointPtr->y;
+        q1[c+4*count].z = pointPtr->z;
+        //eighth segment put in last
+        q1[c+5*count].x = cx-startPtr->x;
+        q1[c+5*count].y = cy+startPtr->y;
+        q1[c+5*count].z = startPtr->z;
+		startPtr++;
         pointPtr--;
         c++;
-	}
+	}	
+	
 	//prints out the circle points
 	int f = 0;
 	while(f != num)
 	{
+		if(f%count==0)
+		{
+			cout << "new section" << endl;
+		}
 		cout << q1[f].x << " " << q1[f].y << endl;
 		glVertex2i(q1[f].x, q1[f].y);
 		f++;
