@@ -87,7 +87,7 @@ void circle(int radius, int cx, int cy)
     while(i != count)
     {
         //cout << pointPtr->x << " " << pointPtr->y << endl;
-		glVertex2i(pointPtr->x, pointPtr->y);
+		//glVertex2i(pointPtr->x, pointPtr->y);
         pointPtr++;
         i++;
 		//endPoint = pointPtr;
@@ -114,7 +114,7 @@ void circle(int radius, int cx, int cy)
     }*/
 	//vertex *endPoint = pointPtr;
 	pointPtr--;
-	pointPtr--;
+	//pointPtr--;
 	//endPoint = pointPtr;
 	vertex *startPtr = NULL;
 	startPtr = points;
@@ -122,21 +122,24 @@ void circle(int radius, int cx, int cy)
 	//cout << pointPtr->x << " " << pointPtr->y << endl;
 	//endPoint--;
 	//cout << endPoint->x << " " << endPoint->y << endl;
-	int num = (2*count)-1;
+	int num = (3*count);
 	vertex q1[num];
     //vertex *q1p = NULL;
     //q1p = q1;
     int c = 0;
 	while(c != count)
 	{
-		//adding the start of og points in order switching x and y
-		q1[c].x = startPtr->y;
-        q1[c].y = startPtr->x;
+		q1[c].x = pointPtr->y;
+        q1[c].y = -x+startPtr->x;
         q1[c].z = startPtr->z;
-		//adding the end of og points in reverse but same x and y starting at count
-		q1[c+count].x = pointPtr->x;//endPoint->x;
-        q1[c+count].y = pointPtr->y;//endPoint->y;
-        q1[c+count].z = pointPtr->z;//endPoint->z;
+		//adding the start of og points in order switching x and y (segment 2)
+		q1[c+count].x = startPtr->y;
+        q1[c+count].y = startPtr->x;
+        q1[c+count].z = startPtr->z;
+		//adding the end of og points in reverse but same x and y starting at count (segment 1)
+		q1[c+2*count].x = pointPtr->x;
+        q1[c+2*count].y = pointPtr->y;
+        q1[c+2*count].z = pointPtr->z;
 		startPtr++;
 		pointPtr--;
 		c++;
@@ -146,11 +149,29 @@ void circle(int radius, int cx, int cy)
 	while(f != num)
 	{
 		cout << q1[f].x << " " << q1[f].y << endl;
+		glVertex2i(q1[f].x, q1[f].y);
 		f++;
 	}
-	//pointPtr1 = points1;
-	//pointPtr = points;
-    glEnd();
+	/*vertex q2[num];
+	vertex *q1p = q1;
+	int g = 0;
+	while(g != count)
+	{
+		q2[g].x = -y+q1p->y;
+        q2[g].y = -x+q1p->x;
+        q2[g].z = q1p->z;
+		q1p++;
+		g++;
+	}
+	cout << "second quater" << endl;
+	f = 0;
+    while(f != num)
+    {
+        cout << q2[f].x << " " << q2[f].y << endl;
+        glVertex2i(q2[f].x, q2[f].y);
+        f++;
+    }*/
+	glEnd();
     glFlush();
 	/*cout << "end, should start with 750 500" << endl;
 	int num = 2*count;
