@@ -122,24 +122,29 @@ void circle(int radius, int cx, int cy)
 	//cout << pointPtr->x << " " << pointPtr->y << endl;
 	//endPoint--;
 	//cout << endPoint->x << " " << endPoint->y << endl;
-	int num = (3*count);
+	int num = (4*count);
 	vertex q1[num];
     //vertex *q1p = NULL;
     //q1p = q1;
     int c = 0;
 	while(c != count)
 	{
-		q1[c].x = pointPtr->y;
-        q1[c].y = -x+startPtr->x;
+		//fourth segment
+		q1[c].x = startPtr->x;
+        q1[c].y = -y-radius+pointPtr->y;
         q1[c].z = startPtr->z;
-		//adding the start of og points in order switching x and y (segment 2)
-		q1[c+count].x = startPtr->y;
-        q1[c+count].y = startPtr->x;
+		//third segment
+		q1[c+count].x = pointPtr->y;
+        q1[c+count].y = -x+startPtr->x;
         q1[c+count].z = startPtr->z;
+		//adding the start of og points in order switching x and y (segment 2)
+		q1[c+2*count].x = startPtr->y;
+        q1[c+2*count].y = startPtr->x;
+        q1[c+2*count].z = startPtr->z;
 		//adding the end of og points in reverse but same x and y starting at count (segment 1)
-		q1[c+2*count].x = pointPtr->x;
-        q1[c+2*count].y = pointPtr->y;
-        q1[c+2*count].z = pointPtr->z;
+		q1[c+3*count].x = pointPtr->x;
+        q1[c+3*count].y = pointPtr->y;
+        q1[c+3*count].z = pointPtr->z;
 		startPtr++;
 		pointPtr--;
 		c++;
