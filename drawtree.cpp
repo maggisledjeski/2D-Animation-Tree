@@ -4,19 +4,46 @@
 #include "prototypes.h"
 using namespace std;
 
-void drawTree(struct vertex * treePoints)
+void drawTree()
 {
-	//int arraySize = numPoints(200,600,450);
+	extern struct vertex *treePoints;
+    vertex spot;
+    //int arraySize = numPoints(200,600,450);
 	//struct vertex * treePoints = (struct vertex *) malloc((numPoints+10)*sizeof(struct vertex));
-	treePoints->x = 458;
+	/*treePoints->x = 458;
 	treePoints->y = 591;
 	treePoints->w = 1;
 	treePoints++;
 	treePoints->x = 600;
     treePoints->y = 475;
     treePoints->w = 1;
-	treePoints++;
-
+	treePoints++;*/
+    
+    spot.x = 458;
+    spot.y = 309;
+    spot.w = 1;
+    *(treePoints + 0) = spot;
+    spot.x = 458;
+    spot.y = 591;
+    spot.w = 1;
+    *(treePoints + 1) = spot;
+    spot.x = 600;
+    spot.y = 475;
+    spot.w = 1;
+    *(treePoints + 2) = spot;
+    spot.x = 200;
+    spot.y = 500;
+    spot.w = 1;
+    *(treePoints + 3) = spot;
+    spot.x = 200;
+    spot.y = 400;
+    spot.w = 1;
+    *(treePoints + 4) = spot;
+    spot.x = 600;
+    spot.y = 425;
+    spot.w = 1;
+    *(treePoints + 5) = spot;
+    
 	glColor3f(0.0,0.0,0.0);
 	glBegin(GL_LINES);
 	glVertex2i(458,591);
@@ -27,46 +54,20 @@ void drawTree(struct vertex * treePoints)
 	glVertex2i(200,400);
 	glVertex2i(200,400);
 	glVertex2i(600,425);
-	glVertex2i(600,425);
+	//this is the last line connecting the canopy to the tree
+    glVertex2i(600,425);
     glVertex2i(458,309);
 	glEnd();
 	glFlush();
 	
-	circle(200,600,450,treePoints);
-		
+	circle(200,600,450);
 	
 }
 
-//not used
-void lineDDA (int x0, int y0, int xEnd, int yEnd)
+void circle(int radius, int cx, int cy)
 {
-	int dx = xEnd - x0,  dy = yEnd - y0, steps, k, _x, _y;
-	float xIncrement, yIncrement, x = x0, y = y0;
-	if (fabs (dx) > fabs (dy))
-	{
-		steps = fabs (dx);
-	}else
-	{
-		steps = fabs (dy);
-	}
-	xIncrement = float (dx) / float (steps);
-	yIncrement = float (dy) / float (steps);
-	_x = round(x);
-	_y = round(y);
-	for (k = 0; k < steps; k++) {
-		x += xIncrement;
-		y += yIncrement;
-		glPointSize(1);
-		glColor3f(0.0,0.0,0.0);
-		glBegin(GL_POINTS);
-		glVertex2f(round(x),round(y));
-		glEnd();
-		glFlush();
-	}
-}
-
-void circle(int radius, int cx, int cy, struct vertex tp[])
-{
+    extern struct vertex *treePoints;
+    
     int x, y;
     float d;
 
@@ -165,7 +166,7 @@ void circle(int radius, int cx, int cy, struct vertex tp[])
         pointPtr--;
         c++;
 	}	
-	
+	vertex spot;
 	//prints out the circle points
 	int f = 0;
 	while(f != num)
@@ -175,7 +176,11 @@ void circle(int radius, int cx, int cy, struct vertex tp[])
 			cout << "new section" << endl;
 		}
 		cout << q1[f].x << " " << q1[f].y << endl;
-		glVertex2i(q1[f].x, q1[f].y);
+        spot.x = q1[f].x;
+        spot.y = q1[f].y;
+        spot.w = 1;
+        *(treePoints + 6 + f) = spot;	
+        glVertex2i(spot.x, spot.y);
 		f++;
 	}
 	glEnd();

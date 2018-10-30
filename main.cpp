@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "prototypes.h"
 #include "structs.h"
+#include "globals.h"
 
 int main(int argc, char** argv)
 {

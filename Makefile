@@ -21,4 +21,4 @@ drawcircle.o: drawcircle.cpp
 
 clean:
 	rm *.o
-	rm a.out
+	rm run
