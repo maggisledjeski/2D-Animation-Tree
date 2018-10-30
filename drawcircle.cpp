@@ -8,7 +8,7 @@ using namespace std;
 int circumference(int radius)
 {
     int ans = 2*M_PI*radius;
-    cout << ans << endl;
+    //cout << ans << endl;
     return ans;
 }
 
