@@ -2,7 +2,7 @@ LDLIBS = -lglut -lGL -lGLU -lX11 -lm
 OBJS = myinit.o display.o drawtree.o drawcircle.o #put object files here put a space to separate
 
 run_fast: main.o
-	c++ main.o $(LDLIBS) $(OBJS)
+	c++ -o run main.o $(LDLIBS) $(OBJS)
 
 main.o: main.cpp $(OBJS)
 	c++ -c main.cpp
