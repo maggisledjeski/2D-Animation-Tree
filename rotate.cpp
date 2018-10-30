@@ -1,0 +1,40 @@
+#include "includes.h"
+#include "prototypes.h"
+#include "structs.h"
+using namespace std;
+
+//this file is used to hold all of the functions that are needed for rotating
+
+//builds a rotation matrix about the Z axis
+void buildRotZ(float ang, float *matrix)	//ang is the spin angle
+{
+	//converts degrees to radians
+	float theta = ang * M_PI / 180.0;
+	
+	matrix[ 0] =  cos(theta); matrix[ 1] = sin(theta); matrix[ 2] = 0.0; matrix[ 3] = 0.0;
+    matrix[ 4] = -sin(theta); matrix[ 5] = cos(theta); matrix[ 6] = 0.0; matrix[ 7] = 0.0;
+    matrix[ 8] = 0.0;         matrix[ 9] = 0.0;        matrix[10] = 1.0; matrix[11] = 0.0;
+    matrix[12] = 0.0;         matrix[13] = 0.0;        matrix[14] = 0.0; matrix[15] = 1.0;
+}
+
+void buildRotX(float ang, float *matrix)
+{
+	//converts degrees to radians
+  	float theta = ang * M_PI / 180.0;
+    
+	matrix[ 0] = 1.0; matrix[ 1] = 0.0; 	   matrix[ 2] = 0.0; 		 matrix[ 3] = 0.0;
+    matrix[ 4] = 0.0; matrix[ 5] = cos(theta); matrix[ 6] = -sin(theta); matrix[ 7] = 0.0;
+    matrix[ 8] = 0.0; matrix[ 9] = sin(theta); matrix[10] = cos(theta);  matrix[11] = 0.0;
+    matrix[12] = 0.0; matrix[13] = 0.0;        matrix[14] = 0.0; 		 matrix[15] = 1.0;
+}
+
+void buildRotY(float ang, float *matrix)
+{
+	//converts degrees to radians
+	float theta = ang * M_PI / 180.0;
+     
+    matrix[ 0] = cos(theta);  matrix[ 1] = 0.0; matrix[ 2] = sin(theta);  matrix[ 3] = 0.0;
+    matrix[ 4] = 0.0; 		  matrix[ 5] = 1.0; matrix[ 6] = 0.0; 		  matrix[ 7] = 0.0;
+    matrix[ 8] = -sin(theta); matrix[ 9] = 0.0; matrix[10] = cos(theta);  matrix[11] = 0.0;
+    matrix[12] = 0.0; 		  matrix[13] = 0.0; matrix[14] = 0.0;         matrix[15] = 1.0;
+}

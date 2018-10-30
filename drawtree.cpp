@@ -100,7 +100,7 @@ void circle(int radius, int cx, int cy)
         pointPtr++;
         count++;
 	}
-	cout << "count: " << count << endl;
+	//cout << "count: " << count << endl;
 	glPointSize(1);
     glColor3f(0.0, 0.0, 0.0 );
     glBegin(GL_POINTS);
@@ -192,6 +192,6 @@ int numPoints(int radius, int cx, int cy)
         }
         count++;
     }
-    cout << "count: " << count << endl;
+    //cout << "count: " << count << endl;
 	return count;
 }
