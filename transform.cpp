@@ -1,6 +1,8 @@
 #include "prototypes.h"
+#include "includes.h"
+#include "structs.h"
 
-void vmMult (int dim, float *tmatrix, float tvector)
+void vmMult(int SIZE, float *tmatrix, float *tvector)
 {
     int i, j;
    float temp[4];
@@ -10,35 +12,48 @@ void vmMult (int dim, float *tmatrix, float tvector)
 
    for (i=0; i < SIZE; i++)
      for (j = 0; j < SIZE; j++)
-           temp[i] += *(pA+(i*SIZE+j)) * *(pB+j);
+           temp[i] += *(tmatrix+(i*SIZE+j)) * *(tvector+j);
 
    for (i=0; i<SIZE; i++)
-         *(pB+i) = temp[i];
+         *(tvector+i) = temp[i];
 }
 
 void applyTrans(int nump, float *tmatrix)
 {
     extern struct vertex *treePants;
-    float temp[4];
-    float *tmp;
-        int i;
+    float tempV[4];
+    float *tmpV;
+    int i;
 
-    tmp = &temp[0];
-    vertex spot;
-    n = *(treePants + i);
+    tmpV = &tempV[0];
     
+	vertex spot;
+    vertex ns;
+	
     for (i=0;i<nump;i++)
     {
-        *(tmp+0)= *(vp+(i*4)+0);
-        *(tmp+1)= *(vp+(i*4)+1);
-        *(tmp+2)= *(vp+(i*4)+2);
-        *(tmp+3)= *(vp+(i*4)+3);
-        vmatm( 4, TM, tmp );
-        *(vp+(i*4)+0) = *(tmp+0);
-        *(vp+(i*4)+1) = *(tmp+1);
-        *(vp+(i*4)+2) = *(tmp+2);
-        *(vp+(i*4)+3) = *(tmp+3);
+        spot = *(treePants + i);
+		*(tmpV+0) = spot.x;
+        *(tmpV+1) = spot.y;
+        *(tmpV+2) = spot.z;
+        *(tmpV+3) = spot.w;
+        vmMult( 4, tmatrix, tmpV );
+		ns.x = *(tmpV+0);
+        ns.y = *(tmpV+1);
+        ns.z = *(tmpV+2);
+        ns.w = *(tmpV+3);
+		*(treePants + i) = ns;
         }
 
 }
 
+void Rotate(int np)
+{
+	//extern struct vertex *treePants;
+	
+	float transMatrix[16];
+	float *tmp = &transMatrix[0];
+	
+	buildRotZ(tmp);
+	applyTrans(np, tmp);
+}

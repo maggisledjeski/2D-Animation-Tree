@@ -19,8 +19,14 @@ void display( void )
 	drawTree();
 	
 	treePants = treePoints;
+	
+	int t = numPoints(200,600,450);
+    int tp = (6*t)+6;
+	//cout << tp <<endl;
+	Rotate(tp);
 	    
-    glEnd();
-    glFlush();
-    
+    //glEnd();
+    //glFlush();
+    drawTTree(tp);
+	glutSwapBuffers();
 }

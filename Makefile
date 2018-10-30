@@ -1,5 +1,5 @@
 LDLIBS = -lglut -lGL -lGLU -lX11 -lm
-OBJS = myinit.o display.o drawtree.o rotate.o keyboardmouse.o drawcircle.o #put object files here put a space to separate
+OBJS = myinit.o display.o drawtree.o rotate.o keyboardmouse.o transform.o drawcircle.o #put object files here put a space to separate
 
 run_fast: main.o
 	c++ -o run main.o $(LDLIBS) $(OBJS)
@@ -21,6 +21,9 @@ rotate.o: rotate.cpp
 
 keyboardmouse.o: keyboardmouse.cpp
 	c++ -c keyboardmouse.cpp
+
+transform.o: transform.cpp
+	c++ -c transform.cpp
 
 drawcircle.o: drawcircle.cpp
 	c++ -c drawcircle.cpp

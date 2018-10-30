@@ -32,4 +32,12 @@ void keyboard(unsigned char key, int x, int y)
 	if(key == 'q' || key == 'Q') {
 		exit(0);
     }
+/*	if ( key == 'c' || key == 'C') {
+        SPIN = 0.0;
+        glutIdleFunc(display);
+    }
+    if ( key == 'x' || key == 'X') {
+        glutIdleFunc(NULL);
+    }
+*/
 }

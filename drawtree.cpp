@@ -180,6 +180,19 @@ void circle(int radius, int cx, int cy)
 	return ;
 }
 
+void drawTTree(int nump)
+{
+	extern struct vertex *treePants;
+	int i;
+	vertex spot;
+    glBegin(GL_LINE_STRIP);
+    for (i=0;i<nump;i++)
+        spot = *(treePants + i);
+		glVertex2f(spot.x, spot.y);
+    glEnd();
+
+}
+
 int numPoints(int radius, int cx, int cy)
 {
     int x, y;
