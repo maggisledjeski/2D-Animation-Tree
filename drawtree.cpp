@@ -12,7 +12,8 @@ void drawTree()
 	//adding the trunk points to the treePoints array    
     spot.x = 458;
     spot.y = 591;
-    spot.w = 1;
+    spot.z = 0;
+	spot.w = 1;
     *(treePoints + 0) = spot;
     spot.x = 600;
     spot.y = 475;
@@ -20,18 +21,22 @@ void drawTree()
     *(treePoints + 1) = spot;
     spot.x = 200;
     spot.y = 500;
+	spot.z = 0;
     spot.w = 1;
     *(treePoints + 2) = spot;
     spot.x = 200;
     spot.y = 400;
+	spot.z = 0;
     spot.w = 1;
     *(treePoints + 3) = spot;
     spot.x = 600;
     spot.y = 425;
+	spot.z = 0;
     spot.w = 1;
     *(treePoints + 4) = spot;
     spot.x = 458;
     spot.y = 309;
+	spot.z = 0;
     spot.w = 1;
     *(treePoints + 5) = spot;
 	//vertex n;
@@ -96,6 +101,7 @@ void circle(int radius, int cx, int cy)
         }
 		pointPtr->x = x;
         pointPtr->y = y;
+		pointPtr->z = 0;
         pointPtr->w = 1;
         pointPtr++;
         count++;
@@ -126,27 +132,33 @@ void circle(int radius, int cx, int cy)
 		//fifth segment
 		q1[c].x = cx-pointPtr->x;
         q1[c].y = cy-pointPtr->y;
+		q1[c].z = 0;
         q1[c].w = startPtr->w;
 		//fourth segment
 		q1[c+count].x = cx+startPtr->x;
         q1[c+count].y = cy-startPtr->y;
+		q1[c+count].z = 0;
         q1[c+count].w = startPtr->w;
 		//third segment 
 		q1[c+2*count].x = cx+pointPtr->y;
         q1[c+2*count].y = cy-pointPtr->x;
-        q1[c+2*count].w = startPtr->w;
+        q1[c+2*count].z = 0;
+		q1[c+2*count].w = startPtr->w;
 		//second segment
 		q1[c+3*count].x = cx+startPtr->y;
         q1[c+3*count].y = cy+startPtr->x;
-        q1[c+3*count].w = startPtr->w;
+        q1[c+3*count].z = 0;
+		q1[c+3*count].w = startPtr->w;
 		//first segment 
 		q1[c+4*count].x = cx+pointPtr->x;
         q1[c+4*count].y = cy+pointPtr->y;
-        q1[c+4*count].w = pointPtr->w;
+        q1[c+4*count].z = 0;
+		q1[c+4*count].w = pointPtr->w;
         //eighth segment put in last
         q1[c+5*count].x = cx-startPtr->x;
         q1[c+5*count].y = cy+startPtr->y;
-        q1[c+5*count].w = startPtr->w;
+        q1[c+5*count].z = 0;
+		q1[c+5*count].w = startPtr->w;
 		startPtr++;
         pointPtr--;
         c++;
@@ -158,6 +170,7 @@ void circle(int radius, int cx, int cy)
 	{
 		spot.x = q1[f].x;
         spot.y = q1[f].y;
+		spot.z = 0;
         spot.w = 1;
         *(treePoints + 6 + f) = spot;	
         f++;

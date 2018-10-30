@@ -1,15 +1,30 @@
 #include "includes.h"
 #include "prototypes.h"
 #include "structs.h"
+
 using namespace std;
 
 //this file is used to hold all of the functions that are needed for rotating
 
-//builds a rotation matrix about the Z axis
-void buildRotZ(float ang, float *matrix)	//ang is the spin angle
+void spinDisplay(void)
 {
+	extern float spin;
+	extern float deltaSpin;
+
+	spin = spin + deltaSpin;
+	if(spin > 360.0)
+	{
+		spin = spin - 360.0;
+	}
+	glutPostRedisplay();
+}
+
+//builds a rotation matrix about the Z axis
+void buildRotZ(float *matrix)	
+{
+	extern float spin;
 	//converts degrees to radians
-	float theta = ang * M_PI / 180.0;
+	float theta = spin * M_PI / 180.0;
 	
 	matrix[ 0] =  cos(theta); matrix[ 1] = sin(theta); matrix[ 2] = 0.0; matrix[ 3] = 0.0;
     matrix[ 4] = -sin(theta); matrix[ 5] = cos(theta); matrix[ 6] = 0.0; matrix[ 7] = 0.0;

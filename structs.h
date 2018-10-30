@@ -2,7 +2,7 @@
 #define STRUCTS_H
 
 struct vertex {
-    int x, y, w;
+    int x, y, z, w;
 };
 
 #endif
