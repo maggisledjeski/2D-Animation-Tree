@@ -10,7 +10,7 @@ void spinDisplay(void)
 {
 	extern float spin;
 	extern float deltaSpin;
-
+    //cout << "spinDisplay" << endl;
 	spin = spin + deltaSpin;
 	if(spin > 360.0)
 	{
@@ -25,7 +25,7 @@ void buildRotZ(float *matrix)
 	extern float spin;
 	//converts degrees to radians
 	float theta = spin * M_PI / 180.0;
-	
+	//cout << "rotZ" << endl;
 	matrix[ 0] =  cos(theta); matrix[ 1] = sin(theta); matrix[ 2] = 0.0; matrix[ 3] = 0.0;
     matrix[ 4] = -sin(theta); matrix[ 5] = cos(theta); matrix[ 6] = 0.0; matrix[ 7] = 0.0;
     matrix[ 8] = 0.0;         matrix[ 9] = 0.0;        matrix[10] = 1.0; matrix[11] = 0.0;

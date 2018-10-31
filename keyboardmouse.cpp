@@ -12,6 +12,7 @@ void mouse(int button, int state, int x, int y)
             {
                 deltaSpin = deltaSpin - 1.0;
                 glutIdleFunc(spinDisplay);
+                cout << "left mouse" << endl;
             }
             break;
         case GLUT_RIGHT_BUTTON:
@@ -28,16 +29,17 @@ void mouse(int button, int state, int x, int y)
 
 void keyboard(unsigned char key, int x, int y)
 {
-	//exits the program if q or Q is clicked
+    extern float spin;
+  	//exits the program if q or Q is clicked
 	if(key == 'q' || key == 'Q') {
 		exit(0);
     }
-/*	if ( key == 'c' || key == 'C') {
-        SPIN = 0.0;
+	if ( key == 'c' || key == 'C') {
+        spin = 0.0;
         glutIdleFunc(display);
     }
     if ( key == 'x' || key == 'X') {
         glutIdleFunc(NULL);
     }
-*/
+
 }

@@ -17,4 +17,5 @@ void keyboard(unsigned char key, int x, int y);
 void vmMult (int SIZE, float *tmatrix, float *tvector);
 void applyTrans(int nump, float *tmatrix);
 void Rotate(int np);
+void buildTrans(float x, float y, float z, float *tmatrix);
 
