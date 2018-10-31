@@ -24,7 +24,7 @@ void display( void )
     int tp = (6*t)+5;
 	//cout << tp <<endl;
 	Rotate(tp);
-	    
+	Scale(tp);    
     //glEnd();
     //glFlush();
     drawTTree(tp);

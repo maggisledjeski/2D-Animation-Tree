@@ -5,6 +5,8 @@
 void mouse(int button, int state, int x, int y)
 {
 	extern float deltaSpin;
+	extern float dsf;
+	
     int y2 = WINDOW_MAX - y; 
 	switch (button) {
         case GLUT_LEFT_BUTTON:
@@ -14,23 +16,27 @@ void mouse(int button, int state, int x, int y)
                 {
                     deltaSpin = deltaSpin - 1.0;
                     glutIdleFunc(spinDisplay);
-                    cout << y << " " << y2 << endl;
+                    //cout << y << " " << y2 << endl;
                 } else
                 {
-                cout << "left-scale " << "x: " << x << "    " << "y: " << y << endl;
+                	dsf = dsf + 0.05;
+					scaleDisplay();
+					//cout << "left-scale " << "x: " << x << "    " << "y: " << y << endl;
                 }
             }
             break;
         case GLUT_RIGHT_BUTTON:
             if (state == GLUT_DOWN)
             {
-                if((VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < y) && (y < VIEWPORT_MAX))
+                if((VIEWPORT_MIN < x) && (x < VIEWPORT_MAX) && (VIEWPORT_MIN < y2) && (y2 < VIEWPORT_MAX))
                 {
                     deltaSpin = deltaSpin + 1.0;
                     glutIdleFunc(spinDisplay);
                 } else
                 {
-                cout << "right-scale " << "x: " << x << "    " << "y: " << y << endl;
+                	dsf = dsf - 0.05;
+                    scaleDisplay();
+					//cout << "right-scale " << "x: " << x << "    " << "y: " << y << endl;
                 }
             }
             break;

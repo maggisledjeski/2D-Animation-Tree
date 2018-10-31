@@ -85,7 +85,16 @@ void Scale(int np)
 
     buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
     applyTrans(np, tmp);
+	
+}
 
+void scaleDisplay(void)
+{
+	extern float sf;
+	extern float dsf;
+	
+	sf = sf + dsf;
+	glutPostRedisplay();
 }
 
 void buildTrans(float x, float y, float z, float *tmatrix)
@@ -99,9 +108,10 @@ void buildTrans(float x, float y, float z, float *tmatrix)
 
 void buildScale(float *tmatrix)
 {
-    tmatrix[ 0] = 1.05; tmatrix[ 1] = 0.0;  tmatrix[ 2] = 0.0;  tmatrix[ 3] = 0.0;
-    tmatrix[ 4] = 0.0;  tmatrix[ 5] = 1.05; tmatrix[ 6] = 0.0;  tmatrix[ 7] = 0.0;
-    tmatrix[ 8] = 0.0;  tmatrix[ 9] = 0.0;  tmatrix[10] = 1.05; tmatrix[11] = 0.0;
-    tmatrix[12] = 0.0;  tmatrix[13] = 0.0;  tmatrix[14] = 0.0;  tmatrix[15] = 1.0;
+    extern float sf;
+	tmatrix[ 0] = sf;  tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] = 0.0;
+    tmatrix[ 4] = 0.0; tmatrix[ 5] = sf;  tmatrix[ 6] = 0.0; tmatrix[ 7] = 0.0;
+    tmatrix[ 8] = 0.0; tmatrix[ 9] = 0.0; tmatrix[10] = sf;  tmatrix[11] = 0.0;
+    tmatrix[12] = 0.0; tmatrix[13] = 0.0; tmatrix[14] = 0.0; tmatrix[15] = 1.0;
 }
 

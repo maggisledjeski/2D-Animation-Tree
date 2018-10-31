@@ -20,3 +20,4 @@ void Rotate(int np);
 void Scale(int np);
 void buildTrans(float x, float y, float z, float *tmatrix);
 void buildScale(float *tmatrix);
+void scaleDisplay(void);
