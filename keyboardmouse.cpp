@@ -49,6 +49,7 @@ void keyboard(unsigned char key, int x, int y)
 {
     extern float spin;
 	extern float sf;
+    extern bool ref;
 
   	//exits the program if q or Q is clicked
 	if(key == 'q' || key == 'Q') {
@@ -67,8 +68,10 @@ void keyboard(unsigned char key, int x, int y)
 	if(key == 'r' || key == 'R') {
         int t = numPoints(200,600,450);
     	int tp = (6*t)+5;
-
-		Reflect(tp);
+        ref = true;
+        Reflect(tp);
+        //glutIdleFunc(display);
+		//cout << "in key " << ref << endl;
     }
 
 	

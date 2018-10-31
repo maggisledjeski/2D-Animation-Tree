@@ -110,7 +110,9 @@ void Reflect(int np)
 
     buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
     applyTrans(np, tmp);
-	reflectDisplay();
+	cout << "in reflect" << endl;
+    glutPostRedisplay();
+    //glutSwapBuffers();
 }
 
 void reflectDisplay(void)

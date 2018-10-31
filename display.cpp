@@ -7,6 +7,7 @@ void display( void )
 {
     extern struct vertex *treePoints;
     extern struct vertex *treePants;	//what we transform
+    extern bool ref;
 
     glClear(GL_COLOR_BUFFER_BIT);  /*clear the window */
 
@@ -23,9 +24,21 @@ void display( void )
 	int t = numPoints(200,600,450);
     int tp = (6*t)+5;
 	//cout << tp <<endl;
-	Rotate(tp);
+	
+    if(ref == true)
+    {
+        Reflect(tp);
+        ref = false;
+    }
+
+    Rotate(tp);
 	Scale(tp);    
-    //Reflect(tp);
+    
+    /*if(ref == true)
+    {
+        Reflect(tp);
+        ref = false;
+    }*/
 	//glEnd();
     //glFlush();
     drawTTree(tp);
