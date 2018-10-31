@@ -46,7 +46,7 @@ void drawTree()
 	circle(200,600,450);
 
 	//draw the tree
-	int l = numPoints(200,600,450);
+	/*int l = numPoints(200,600,450);
 	l = (6*l)+6;
 	int f = 0;
     vertex s;
@@ -62,7 +62,7 @@ void drawTree()
     }
     glEnd();
     glFlush();
-
+*/
 	
 }
 
@@ -184,13 +184,13 @@ void drawTTree(int nump)
 {
 	extern struct vertex *treePants;
 	int i;
-	cout << nump << endl;
+	//cout << nump << endl;
     vertex spot;
     glBegin(GL_LINE_STRIP);
     for (i=0;i<nump;i++)
     {
         spot = *(treePants + i);
-		cout << spot.x << " " << spot.y << endl;
+		//cout << spot.x << " " << spot.y << endl;
         glVertex2f(spot.x, spot.y);
     
     }
