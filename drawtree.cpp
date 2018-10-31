@@ -11,39 +11,39 @@ void drawTree()
     
 	//adding the trunk points to the treePoints array    
     spot.x = 458;
-    spot.y = 591;
+    spot.y = 642;
     spot.z = 0;
 	spot.w = 1;
     *(treePoints + 0) = spot;
-    spot.x = 600;
-    spot.y = 475;
+    spot.x = 650;
+    spot.y = 525;
     spot.w = 1;
     *(treePoints + 1) = spot;
     spot.x = 200;
-    spot.y = 500;
+    spot.y = 550;
 	spot.z = 0;
     spot.w = 1;
     *(treePoints + 2) = spot;
     spot.x = 200;
-    spot.y = 400;
+    spot.y = 450;
 	spot.z = 0;
     spot.w = 1;
     *(treePoints + 3) = spot;
-    spot.x = 600;
-    spot.y = 425;
+    spot.x = 650;
+    spot.y = 475;
 	spot.z = 0;
     spot.w = 1;
     *(treePoints + 4) = spot;
-    spot.x = 458;
-    spot.y = 309;
+    /*spot.x = 458;
+    spot.y = 359;
 	spot.z = 0;
     spot.w = 1;
     *(treePoints + 5) = spot;
-	//vertex n;
+	*///vertex n;
 	//n = *(treePoints+2);
 	//cout << n.x << endl;
 	
-	circle(200,600,450);
+	circle(200,600,500);
 
 	//draw the tree
 	/*int l = numPoints(200,600,450);
@@ -172,7 +172,7 @@ void circle(int radius, int cx, int cy)
         spot.y = q1[f].y;
 		spot.z = 0;
         spot.w = 1;
-        *(treePoints + 6 + f) = spot;	
+        *(treePoints + 5 + f) = spot;	
         f++;
 	}
 	glEnd();

@@ -21,7 +21,7 @@ void display( void )
 	treePants = treePoints;
 	
 	int t = numPoints(200,600,450);
-    int tp = (6*t)+6;
+    int tp = (6*t)+5;
 	//cout << tp <<endl;
 	Rotate(tp);
 	    
