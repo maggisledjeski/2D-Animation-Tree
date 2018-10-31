@@ -25,7 +25,8 @@ void display( void )
 	//cout << tp <<endl;
 	Rotate(tp);
 	Scale(tp);    
-    //glEnd();
+    //Reflect(tp);
+	//glEnd();
     //glFlush();
     drawTTree(tp);
 	glutSwapBuffers();

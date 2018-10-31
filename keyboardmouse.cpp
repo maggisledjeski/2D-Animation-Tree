@@ -48,16 +48,28 @@ void mouse(int button, int state, int x, int y)
 void keyboard(unsigned char key, int x, int y)
 {
     extern float spin;
+	extern float sf;
+
   	//exits the program if q or Q is clicked
 	if(key == 'q' || key == 'Q') {
 		exit(0);
     }
-	if ( key == 'c' || key == 'C') {
+	//stops all animation and returns the original tree
+	if(key == 'i' || key == 'I') {
         spin = 0.0;
+		sf = 1.0;
         glutIdleFunc(display);
     }
-    if ( key == 'x' || key == 'X') {
+	//stops all animation
+    if(key == 's' || key == 'S') {
         glutIdleFunc(NULL);
     }
+	if(key == 'r' || key == 'R') {
+        int t = numPoints(200,600,450);
+    	int tp = (6*t)+5;
 
+		Reflect(tp);
+    }
+
+	
 }

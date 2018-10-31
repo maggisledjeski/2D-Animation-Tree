@@ -97,6 +97,27 @@ void scaleDisplay(void)
 	glutPostRedisplay();
 }
 
+void Reflect(int np)
+{
+	float transMatrix[16];
+    float *tmp = &transMatrix[0];
+
+    buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
+    applyTrans(np, tmp);
+
+    buildReflect(tmp);
+    applyTrans(np, tmp);
+
+    buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
+    applyTrans(np, tmp);
+	reflectDisplay();
+}
+
+void reflectDisplay(void)
+{
+	glutPostRedisplay();
+}
+
 void buildTrans(float x, float y, float z, float *tmatrix)
 {
     tmatrix[ 0] = 1.0; tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] =   x;
@@ -115,3 +136,11 @@ void buildScale(float *tmatrix)
     tmatrix[12] = 0.0; tmatrix[13] = 0.0; tmatrix[14] = 0.0; tmatrix[15] = 1.0;
 }
 
+void buildReflect(float *tmatrix)
+{
+	tmatrix[ 0] = -1.0; tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] = 0.0;
+    tmatrix[ 4] = 0.0;  tmatrix[ 5] = 1.0; tmatrix[ 6] = 0.0; tmatrix[ 7] = 0.0;
+    tmatrix[ 8] = 0.0;  tmatrix[ 9] = 0.0; tmatrix[10] = 1.0; tmatrix[11] = 0.0;
+    tmatrix[12] = 0.0;  tmatrix[13] = 0.0; tmatrix[14] = 0.0; tmatrix[15] = 1.0;
+	
+}
