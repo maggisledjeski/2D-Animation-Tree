@@ -27,13 +27,13 @@ void display( void )
 	
     if(ref == true)
     {
-        Reflect(tp);
-        ref = false;
+        Reflect();
+        //ref = false;
     }
 
     Rotate(tp);
 	Scale(tp);    
-    
+    //Reflect();
     /*if(ref == true)
     {
         Reflect(tp);

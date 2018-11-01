@@ -66,10 +66,17 @@ void keyboard(unsigned char key, int x, int y)
         glutIdleFunc(NULL);
     }
 	if(key == 'r' || key == 'R') {
-        int t = numPoints(200,600,450);
-    	int tp = (6*t)+5;
-        ref = true;
-        Reflect(tp);
+        //int t = numPoints(200,600,450);
+    	//int tp = (6*t)+5;
+        if(ref == false)
+        {
+            ref = true;
+            Reflect();
+        } else if(ref == true)
+        {
+            ref = false;
+            Reflect();
+        }
         //glutIdleFunc(display);
 		//cout << "in key " << ref << endl;
     }

@@ -97,23 +97,60 @@ void scaleDisplay(void)
 	glutPostRedisplay();
 }
 
-void Reflect(int np)
+void Reflect(void)
 {
 	float transMatrix[16];
     float *tmp = &transMatrix[0];
 
+    
+
     buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
-    applyTrans(np, tmp);
+    applyTrans1(tmp);
 
     buildReflect(tmp);
-    applyTrans(np, tmp);
+    applyTrans1(tmp);
 
     buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
-    applyTrans(np, tmp);
-	cout << "in reflect" << endl;
+    applyTrans1(tmp);
+	//cout << "in reflect" << endl;
     glutPostRedisplay();
     //glutSwapBuffers();
 }
+
+void applyTrans1(float *tmatrix)
+{
+    extern struct vertex *treePants;
+    int t = numPoints(200,600,450);
+    int tp = (6*t)+5;
+
+    
+    float tempV[4];
+    float *tmpV;
+    int i;
+
+    tmpV = &tempV[0];
+
+    vertex spot;
+    vertex ns;
+
+    for (i=0;i<tp;i++)
+    {
+        spot = *(treePants + i);
+        *(tmpV+0) = spot.x;
+        *(tmpV+1) = spot.y;
+        *(tmpV+2) = spot.z;
+        *(tmpV+3) = spot.w;
+        vmMult( 4, tmatrix, tmpV );
+        ns.x = *(tmpV+0);
+        ns.y = *(tmpV+1);
+        ns.z = *(tmpV+2);
+        ns.w = *(tmpV+3);
+        *(treePants + i) = ns;
+    }
+
+}
+
+
 
 void reflectDisplay(void)
 {
