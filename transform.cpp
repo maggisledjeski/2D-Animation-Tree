@@ -55,68 +55,6 @@ void applyTrans(int nump, float *tmatrix)
 
 }
 
-void Rotate(int np)
-{
-	//extern struct vertex *treePants;
-	
-	float transMatrix[16];
-	float *tmp = &transMatrix[0];
-	
-    buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
-    applyTrans(np, tmp);
-
-	buildRotZ(tmp);
-	applyTrans(np, tmp);
-    
-    buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
-    applyTrans(np, tmp);
-}
-
-void Scale(int np)
-{
-    float transMatrix[16];
-    float *tmp = &transMatrix[0];
-
-    buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
-    applyTrans(np, tmp);
-
-    buildScale(tmp);
-    applyTrans(np, tmp);
-
-    buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
-    applyTrans(np, tmp);
-	
-}
-
-void scaleDisplay(void)
-{
-	extern float sf;
-	extern float dsf;
-	
-	sf = sf + dsf;
-	glutPostRedisplay();
-}
-
-void Reflect(void)
-{
-	float transMatrix[16];
-    float *tmp = &transMatrix[0];
-
-    
-
-    buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
-    applyTrans1(tmp);
-
-    buildReflect(tmp);
-    applyTrans1(tmp);
-
-    buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
-    applyTrans1(tmp);
-	//cout << "in reflect" << endl;
-    glutPostRedisplay();
-    //glutSwapBuffers();
-}
-
 void applyTrans1(float *tmatrix)
 {
     extern struct vertex *treePants;
@@ -150,13 +88,6 @@ void applyTrans1(float *tmatrix)
 
 }
 
-
-
-void reflectDisplay(void)
-{
-	glutPostRedisplay();
-}
-
 void buildTrans(float x, float y, float z, float *tmatrix)
 {
     tmatrix[ 0] = 1.0; tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] =   x;
@@ -166,20 +97,4 @@ void buildTrans(float x, float y, float z, float *tmatrix)
 
 }
 
-void buildScale(float *tmatrix)
-{
-    extern float sf;
-	tmatrix[ 0] = sf;  tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] = 0.0;
-    tmatrix[ 4] = 0.0; tmatrix[ 5] = sf;  tmatrix[ 6] = 0.0; tmatrix[ 7] = 0.0;
-    tmatrix[ 8] = 0.0; tmatrix[ 9] = 0.0; tmatrix[10] = sf;  tmatrix[11] = 0.0;
-    tmatrix[12] = 0.0; tmatrix[13] = 0.0; tmatrix[14] = 0.0; tmatrix[15] = 1.0;
-}
 
-void buildReflect(float *tmatrix)
-{
-	tmatrix[ 0] = -1.0; tmatrix[ 1] = 0.0; tmatrix[ 2] = 0.0; tmatrix[ 3] = 0.0;
-    tmatrix[ 4] = 0.0;  tmatrix[ 5] = 1.0; tmatrix[ 6] = 0.0; tmatrix[ 7] = 0.0;
-    tmatrix[ 8] = 0.0;  tmatrix[ 9] = 0.0; tmatrix[10] = 1.0; tmatrix[11] = 0.0;
-    tmatrix[12] = 0.0;  tmatrix[13] = 0.0; tmatrix[14] = 0.0; tmatrix[15] = 1.0;
-	
-}

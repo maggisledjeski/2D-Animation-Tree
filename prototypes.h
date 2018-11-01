@@ -23,5 +23,4 @@ void buildTrans(float x, float y, float z, float *tmatrix);
 void buildScale(float *tmatrix);
 void buildReflect(float *tmatrix);
 void scaleDisplay(void);
-void reflectDisplay(void);
 void applyTrans1(float *tmatrix);

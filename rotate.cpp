@@ -1,10 +1,25 @@
 #include "includes.h"
 #include "prototypes.h"
 #include "structs.h"
-
+#include "constants.h"
 using namespace std;
 
 //this file is used to hold all of the functions that are needed for rotating
+
+void Rotate(int np)
+{
+    float transMatrix[16];
+    float *tmp = &transMatrix[0];
+
+    buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
+    applyTrans(np, tmp);
+
+    buildRotZ(tmp);
+    applyTrans(np, tmp);
+
+    buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
+    applyTrans(np, tmp);
+}
 
 void spinDisplay(void)
 {
