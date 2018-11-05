@@ -23,8 +23,12 @@ void scaleDisplay(void)
     extern float sf;
     extern float dsf;
 
-    sf = sf + dsf;
-    glutPostRedisplay();
+    sf = 1.0 + dsf;
+    if(sf < 0.0)
+	{
+		sf = 0.0;
+	}
+	glutPostRedisplay();
 }
 
 void buildScale(float *tmatrix)
