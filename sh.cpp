@@ -1,7 +1,7 @@
 #include "includes.h"
 #include "prototypes.h"
 
-typedef enum { Left, Right, Bottom, Top } Boundary;
+typedef enum { Left, Right, Bottom, Top }Boundary;
 const GLint nClip = 4;
 
 //wMin is the minimum point for a side

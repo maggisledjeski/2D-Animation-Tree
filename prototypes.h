@@ -24,3 +24,13 @@ void buildScale(float *tmatrix);
 void buildReflect(float *tmatrix);
 void scaleDisplay(void);
 void applyTrans1(float *tmatrix);
+
+//sh
+
+GLint polygonClipSuthHodg(vertex wMin, vertex wMax, GLint n, vertex * pIn, vertex * pOut);
+GLint inside(vertex p, Boundary b, vertex wMin, vertex wMax);
+GLint cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax);
+vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax);
+void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first[], vertex * s);
+void closeClip(vertex wMin, vertex wMax, vertex * pOut, GLint * cnt, vertex * first [ ], vertex * s);
+
