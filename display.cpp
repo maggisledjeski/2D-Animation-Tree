@@ -25,25 +25,11 @@ void display( void )
     int tp = (6*t)+5;
 	//cout << tp <<endl;
 	
-    /*if(ref == true)
-    {
-        Reflect();
-        //ref = false;
-    }*/
-
+    
     Rotate(tp);
 	Scale(tp);
-	if(ref == true)
-    {
-        Reflect();
-	}
-	//Scale(tp);    
-    //Reflect();
-    /*if(ref == true)
-    {
-        Reflect(tp);
-        ref = false;
-    }*/
+	Reflect();
+	
 	//glEnd();
     //glFlush();
     drawTTree(tp);

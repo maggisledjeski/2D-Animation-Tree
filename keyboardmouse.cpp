@@ -49,7 +49,7 @@ void keyboard(unsigned char key, int x, int y)
 {
     extern float spin;
 	extern float sf;
-    extern bool ref;
+    extern float rf;
 
   	//exits the program if q or Q is clicked
 	if(key == 'q' || key == 'Q') {
@@ -66,19 +66,13 @@ void keyboard(unsigned char key, int x, int y)
         glutIdleFunc(NULL);
     }
 	if(key == 'r' || key == 'R') {
-        //int t = numPoints(200,600,450);
-    	//int tp = (6*t)+5;
-        if(ref == false)
+        rf = 3.14159265358979323846;	//sets rf to be PI
+		spin = spin + 180;
+        if(spin > 360.0)
         {
-            ref = true;
-            Reflect();
-        } else if(ref == true)
-        {
-            ref = false;
-            Reflect();
+        	spin = spin - 360;
         }
-        //glutIdleFunc(display);
-		//cout << "in key " << ref << endl;
+        Reflect();
     }
 
 	

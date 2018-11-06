@@ -9,6 +9,7 @@ float spin = 0.0;
 float deltaSpin = 0.0;
 float sf = 1.0;
 float dsf = 0.0;
-bool ref = false;
+float rf = 3.14159265358979323846;
+
 
 #endif
