@@ -1,8 +1,16 @@
 #include "includes.h"
 #include "prototypes.h"
+#include "structs.h"
 
-typedef enum { Left, Right, Bottom, Top }Boundary;
-const GLint nClip = 4;
+int clip(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut)
+{
+	int c = polygonClipSuthHodg(wMin, wMax, n, pIn, pOut);
+	glutPostRedisplay();
+	return c;
+}
+
+//typedef enum { Left, Right, Bottom, Top }Boundary;
+const int nClip = 4;
 
 //wMin is the minimum point for a side
 //wMax is the maximum point for a side
@@ -13,24 +21,25 @@ const GLint nClip = 4;
 //s is an array that has the previous point that was processed
 
 //not sure what this does
-GLint polygonClipSuthHodg(vertex wMin, vertex wMax, GLint n, vertex * pIn, vertex * pOut)
+int polygonClipSuthHodg(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut)
 {
-	extern struct vertex * treePants;
+	extern struct vertex * treePants2;
 /* Parameter "first" holds pointer to first point processed for
  *  * * a boundary; "s" holds most recent point processed for boundary.
  *   * */
-	vertex * first[nClip] = { 0, 0, 0, 0 }, s[nClip];
-	GLint k, cnt = 0;
+	vertex * first[nClip] = { 0, 0, 0, 0 };//, treePants1[nClip];//s[nClip];
+	
+	int k, cnt = 0;
 	for(k = 0; k < n; k++)
 	{
-		clipPoint(pIn[k], Left, wMin, wMax, pOut, &cnt, first, s);
+		clipPoint(pIn[k], Left, wMin, wMax, pOut, &cnt, first, treePants2);
 	}
-	closeClip(wMin, wMax, pOut, &cnt, first, s);
+	closeClip(wMin, wMax, pOut, &cnt, first, treePants2);
 	return(cnt);
 }
 
 //calculates if the point being tested, for a certain boundary is inside the clipping window
-GLint inside(vertex p, Boundary b, vertex wMin, vertex wMax)
+int inside(vertex p, Boundary b, vertex wMin, vertex wMax)
 {
 	switch (b) {
     	case Left:   
@@ -62,7 +71,7 @@ GLint inside(vertex p, Boundary b, vertex wMin, vertex wMax)
 }
 
 //tests if the vector made up of the current point and the previous point cross the boundary being tested
-GLint cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
+int cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 {
    	if(inside(p1, winEdge, wMin, wMax) == inside(p2, winEdge, wMin, wMax))
 	{
@@ -80,7 +89,7 @@ GLint cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 {
 	vertex iPt;	//intersection point
-   	GLfloat m;	//slope
+   	float m;	//slope
 
    	if (p1.x != p2.x) 
 	{
@@ -123,10 +132,13 @@ vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMa
 }
 
 //the main clipping algorithm
-void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first[], vertex * s)
+void clipPoint(vertex p, Boundary w, vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first[], vertex * s)
 {
-	vertex iPt;
+	extern struct vertex * treePants2;
 
+	vertex iPt;
+	Boundary winEdge = w;
+	
    /* If no previous point exists for this clipping boundary,
  *  * save this point.
  *   *         */
@@ -146,8 +158,11 @@ void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pO
     		iPt = intersect(p, s[winEdge], winEdge, wMin, wMax);
         	if(winEdge < Top)
 			{
-        		clipPoint(iPt, b+1, wMin, wMax, pOut, cnt, first, s);
-        	} 
+        		//b = Boundary((int)winEdge + 1);
+				//clipPoint(iPt, b, wMin, wMax, pOut, cnt, first, s);
+        		winEdge = Boundary((int)winEdge + 1);
+                clipPoint(iPt, winEdge, wMin, wMax, pOut, cnt, first, treePants2);
+			} 
 			else 
 			{
             	pOut[*cnt] = iPt;  
@@ -163,7 +178,8 @@ void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pO
 	{
       	if(winEdge < Top)
 		{
-         	clipPoint(p, winEdge + 1, wMin, wMax, pOut, cnt, first, s);
+         	winEdge = Boundary((int)winEdge + 1);
+			clipPoint(p, winEdge, wMin, wMax, pOut, cnt, first, treePants2);
       	} 
 		else 
 		{
@@ -174,19 +190,22 @@ void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pO
 }
 
 //not sure what this does
-void closeClip(vertex wMin, vertex wMax, vertex * pOut, GLint * cnt, vertex * first [ ], vertex * s)
+void closeClip(vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first [ ], vertex * s)
 {
-   vertex pt;
-   Boundary winEdge;
-
-	for(winEdge = Left; winEdge <= Top; winEdge++) 
+   	extern struct vertex *treePants2;
+	vertex pt;
+   	Boundary winEdge = Left;
+	
+	while(winEdge <= Top) 
 	{
     	if(cross(s[winEdge], *first[winEdge], winEdge, wMin, wMax)) 
 		{
         	pt = intersect (s[winEdge], *first[winEdge], winEdge, wMin, wMax);
          	if(winEdge < Top)
 			{
-            	clipPoint(pt, winEdge + 1, wMin, wMax, pOut, cnt, first, s);
+            	//int w = Boundary(int(winEdge)+1);
+				winEdge = Boundary((int)winEdge + 1);
+				clipPoint(pt, winEdge, wMin, wMax, pOut, cnt, first, treePants2);
          	}
 			else 
 			{
@@ -194,7 +213,6 @@ void closeClip(vertex wMin, vertex wMax, vertex * pOut, GLint * cnt, vertex * fi
 				(*cnt)++;
          	}
       	}
+		winEdge = Boundary((int)winEdge + 1);
    	}
 }
-
-

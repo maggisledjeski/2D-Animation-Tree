@@ -5,7 +5,7 @@ struct vertex {
     int x, y, z, w;
 };
 
-//typedef enum { Left, Right, Bottom, Top } Boundary;
+enum Boundary { Left, Right, Bottom, Top };
 /*struct Boundary {
 	int Left = 0;
 	int Right = 1;
