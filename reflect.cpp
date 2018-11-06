@@ -17,6 +17,7 @@ void Reflect(void)
 
     buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
     applyTrans1(tmp);
+	
     glutPostRedisplay();
 
 }

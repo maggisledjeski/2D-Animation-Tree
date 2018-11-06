@@ -32,11 +32,12 @@ void display( void )
     }*/
 
     Rotate(tp);
+	Scale(tp);
 	if(ref == true)
     {
         Reflect();
 	}
-	Scale(tp);    
+	//Scale(tp);    
     //Reflect();
     /*if(ref == true)
     {
