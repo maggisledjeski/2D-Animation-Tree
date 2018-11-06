@@ -34,27 +34,34 @@ void display( void )
     //glFlush();
     drawTTree(tp);	//draws the transformed tree
 	*/
+	vertex min;
+    min.x = VIEWPORT_MIN;
+    min.y = VIEWPORT_MIN;
+    vertex max;
+    max.x = VIEWPORT_MAX;
+    max.y = VIEWPORT_MAX;
+    int num = 4;
+
 	treePants1 = (struct vertex *) malloc((6)*sizeof(struct vertex));
 	treePants2 = (struct vertex *) malloc((6)*sizeof(struct vertex));
 	struct vertex *pO = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	struct vertex *pI = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	//struct vertex pI, pO;
-	
+//cout << "f" <<endl;	
 	drawBox();
+//cout << "f1" << endl;
 	//pI = treePants1;
 	/*treePants1 = treePants2;
-	vertex min;
-	min.x = VIEWPORT_MIN;
-	min.y = VIEWPORT_MIN;
-	vertex max;
-	max.x = VIEWPORT_MAX;
-	max.y = VIEWPORT_MAX;
-	int num = 4;
 	int c = clip(min, max, num, pI, pO);
 	cout << c << endl;
 	*///polygonClipSuthHodg(min, max, num, pI, pO);	
 	//clip();
-	drawTBox(5);
+	int p = 5;	
+//	cout << "f2" << endl;
+	Scale(p);
+//	cout << "f3" << endl;
+	drawTBox(p);
+//	cout << "f4" << endl;
 		
 	glutSwapBuffers();
 }

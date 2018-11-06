@@ -230,7 +230,7 @@ int numPoints(int radius, int cx, int cy)
 void drawBox(void)
 {
 	extern struct vertex *treePants1;
-
+	extern struct vertex *treePants2;
 	vertex spot;
 	
 	spot.x = 150;
@@ -238,38 +238,42 @@ void drawBox(void)
     spot.z = 0;
     spot.w = 1;
     *(treePants1 + 0) = spot;
+	*(treePants2 + 0) = spot;
     spot.x = 150;
     spot.y = 400;
     spot.w = 1;
     *(treePants1 + 1) = spot;
+	*(treePants2 + 1) = spot;
     spot.x = 300;
     spot.y = 400;
     spot.z = 0;
     spot.w = 1;
     *(treePants1 + 2) = spot;
+	*(treePants2 + 2) = spot;
     spot.x = 300;
     spot.y = 500;
     spot.z = 0;
     spot.w = 1;
     *(treePants1 + 3) = spot;
+	*(treePants2 + 3) = spot;
 	spot.x = 150;
     spot.y = 500;
     spot.z = 0;
     spot.w = 1;
     *(treePants1 + 4) = spot;
-
+	*(treePants2 + 4) = spot;
 }
 
 void drawTBox(int nump)
 {
-    extern struct vertex *treePants1;
+    extern struct vertex *treePants2;
     int i;
     vertex spot;
     //glColor3i(1, 1, 0);
 	glBegin(GL_LINE_STRIP);
     for (i=0;i<nump;i++)
     {
-        spot = *(treePants1 + i);
+        spot = *(treePants2 + i);
 		glVertex2f(spot.x, spot.y);
 
     }
