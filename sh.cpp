@@ -12,6 +12,7 @@ const GLint nClip = 4;
 //first is an array that has the first point to clip
 //s is an array that has the previous point that was processed
 
+//not sure what this does
 GLint polygonClipSuthHodg(vertex wMin, vertex wMax, GLint n, vertex * pIn, vertex * pOut)
 {
 	extern struct vertex * treePants;
@@ -28,6 +29,7 @@ GLint polygonClipSuthHodg(vertex wMin, vertex wMax, GLint n, vertex * pIn, verte
 	return(cnt);
 }
 
+//calculates if the point being tested, for a certain boundary is inside the clipping window
 GLint inside(vertex p, Boundary b, vertex wMin, vertex wMax)
 {
 	switch (b) {
@@ -59,6 +61,7 @@ GLint inside(vertex p, Boundary b, vertex wMin, vertex wMax)
    	return(true);
 }
 
+//tests if the vector made up of the current point and the previous point cross the boundary being tested
 GLint cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 {
    	if(inside(p1, winEdge, wMin, wMax) == inside(p2, winEdge, wMin, wMax))
@@ -71,6 +74,9 @@ GLint cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 	}
 }
 
+//will run if cross returns true
+//calculates the intersection point with the vector and the boundary
+//returns the intersection point
 vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax)
 {
 	vertex iPt;	//intersection point
@@ -116,6 +122,7 @@ vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMa
    return(iPt);
 }
 
+//the main clipping algorithm
 void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first[], vertex * s)
 {
 	vertex iPt;
@@ -166,6 +173,7 @@ void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pO
 	}
 }
 
+//not sure what this does
 void closeClip(vertex wMin, vertex wMax, vertex * pOut, GLint * cnt, vertex * first [ ], vertex * s)
 {
    vertex pt;
