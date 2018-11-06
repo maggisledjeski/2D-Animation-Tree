@@ -237,30 +237,30 @@ void drawBox(void)
     spot.y = 500;
     spot.z = 0;
     spot.w = 1;
-    *(treePants1 + 0) = spot;
+    //*(treePants1 + 0) = spot;
 	*(treePants2 + 0) = spot;
     spot.x = 150;
     spot.y = 400;
     spot.w = 1;
-    *(treePants1 + 1) = spot;
+    //*(treePants1 + 1) = spot;
 	*(treePants2 + 1) = spot;
     spot.x = 300;
     spot.y = 400;
     spot.z = 0;
     spot.w = 1;
-    *(treePants1 + 2) = spot;
+    //*(treePants1 + 2) = spot;
 	*(treePants2 + 2) = spot;
     spot.x = 300;
     spot.y = 500;
     spot.z = 0;
     spot.w = 1;
-    *(treePants1 + 3) = spot;
+    //*(treePants1 + 3) = spot;
 	*(treePants2 + 3) = spot;
 	spot.x = 150;
     spot.y = 500;
     spot.z = 0;
     spot.w = 1;
-    *(treePants1 + 4) = spot;
+    //*(treePants1 + 4) = spot;
 	*(treePants2 + 4) = spot;
 }
 

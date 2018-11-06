@@ -4,6 +4,7 @@
 
 int clip(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut)
 {
+	//cout << "hi" << endl;
 	int c = polygonClipSuthHodg(wMin, wMax, n, pIn, pOut);
 	glutPostRedisplay();
 	return c;
@@ -24,6 +25,8 @@ const int nClip = 4;
 int polygonClipSuthHodg(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut)
 {
 	extern struct vertex * treePants2;
+	//extern struct vertex * treePants1;
+
 /* Parameter "first" holds pointer to first point processed for
  *  * * a boundary; "s" holds most recent point processed for boundary.
  *   * */
@@ -32,7 +35,7 @@ int polygonClipSuthHodg(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * 
 	int k, cnt = 0;
 	for(k = 0; k < n; k++)
 	{
-		clipPoint(pIn[k], Left, wMin, wMax, pOut, &cnt, first, treePants2);
+		clipPoint(treePants2[k], Left, wMin, wMax, pOut, &cnt, first, treePants2);
 	}
 	closeClip(wMin, wMax, pOut, &cnt, first, treePants2);
 	return(cnt);
@@ -153,9 +156,9 @@ void clipPoint(vertex p, Boundary w, vertex wMin, vertex wMax, vertex * pOut, in
  *  	Clip against next boundary, if any.  
  *  	If no more clip boundaries, add intersection to output list.  
  *      */
-		if(cross(p, s[winEdge], winEdge, wMin, wMax)) 
+		if(cross(p, treePants2[winEdge], winEdge, wMin, wMax)) 
 		{
-    		iPt = intersect(p, s[winEdge], winEdge, wMin, wMax);
+    		iPt = intersect(p, treePants2[winEdge], winEdge, wMin, wMax);
         	if(winEdge < Top)
 			{
         		//b = Boundary((int)winEdge + 1);
@@ -171,7 +174,7 @@ void clipPoint(vertex p, Boundary w, vertex wMin, vertex wMax, vertex * pOut, in
     	}
 	}
    /*  Save p as most recent point for this clip boundary.  */
-   s[winEdge] = p;
+   treePants2[winEdge] = p;
 
    /*  For all, if point inside, proceed to next boundary, if any.  */
    if(inside(p, winEdge, wMin, wMax))
@@ -198,9 +201,9 @@ void closeClip(vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * firs
 	
 	while(winEdge <= Top) 
 	{
-    	if(cross(s[winEdge], *first[winEdge], winEdge, wMin, wMax)) 
+    	if(cross(treePants2[winEdge], *first[winEdge], winEdge, wMin, wMax)) 
 		{
-        	pt = intersect (s[winEdge], *first[winEdge], winEdge, wMin, wMax);
+        	pt = intersect(treePants2[winEdge], *first[winEdge], winEdge, wMin, wMax);
          	if(winEdge < Top)
 			{
             	//int w = Boundary(int(winEdge)+1);
