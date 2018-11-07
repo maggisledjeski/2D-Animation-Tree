@@ -51,20 +51,20 @@ void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *ou
 {
 	vertex s, p, i;
 	int j;
-	cout << "sh1" << endl;
+	//cout << "sh1" << endl;
 	*outLength = 0;
-	cout << "sh2" << endl;
+	//cout << "sh2" << endl;
 	s = inVertexArray[inLength - 1];	/* Start with the last vertex in inVertexArray */
 	for (j = 0; j < inLength; j++) {
-		cout << "sh3" << endl;
+		//cout << "sh3" << endl;
 		p = inVertexArray[j];	/* Now s and p correspond to the vertices in Fig.3.33 */
-		cout << "sh4" << endl;
+		//cout << "sh4" << endl;
 		if (Inside(p, clip_boundary)) {	/* Cases 1 and 4 */
-			cout << "sh5" << endl;
+			//cout << "sh5" << endl;
 			if (Inside(s, clip_boundary)){
-				cout << "sh6" << endl;
+				//cout << "sh6" << endl;
 				Output(p, outLength, outVertexArray);	/* Case 1 */
-				cout << "sh7" << endl;
+				//cout << "sh7" << endl;
 			}else {						/* Case 4 */
 				Intersect(s, p, clip_boundary, &i);
 				Output(i, outLength, outVertexArray);
@@ -80,8 +80,9 @@ void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *ou
 
 void Clip(vertex *inArray, vertex *outArray)
 {
-	/*bring in or create place for the arrays that will be changed*/
+	
 	extern int *outputLength;
+	//*outputLength = 0;
 	int startNum = 5;
 	
 	struct vertex *bb = (struct vertex *) malloc((2)*sizeof(struct vertex));
@@ -92,11 +93,9 @@ void Clip(vertex *inArray, vertex *outArray)
 	bbe.x = 900;
 	bbe.y = 900;
 	*(bb + 1) = bbe;
-	cout << "start" << endl;
-	/*bottom clip
- 	* shClip(inputArray, outputArray, clipBoundary)	*/
+	
 	shClip(inArray, outArray, startNum, outputLength, bb);
-	cout << "end" << endl;
+	
 	/*right clip
  	* shClip(outputArray, inputArray, clipBoundary)	*/
 	//shClip();
@@ -106,7 +105,7 @@ void Clip(vertex *inArray, vertex *outArray)
 	/*left clip
  	* shClip(outputArray, inputArray, clipBoundary) */
 	//shClip();
-	glutPostRedisplay();
+	//glutPostRedisplay();
 
 }
 
