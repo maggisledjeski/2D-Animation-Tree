@@ -27,16 +27,11 @@ void buildReflect(float *tmatrix);
 void scaleDisplay(void);
 void applyTrans1(float *tmatrix);
 
-//sh
-
-int polygonClipSuthHodg(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut);
-int inside(vertex p, Boundary b, vertex wMin, vertex wMax);
-int cross(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax);
-vertex intersect(vertex p1, vertex p2, Boundary winEdge, vertex wMin, vertex wMax);
-void clipPoint(vertex p, Boundary winEdge, vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first[], vertex * s);
-void closeClip(vertex wMin, vertex wMax, vertex * pOut, int * cnt, vertex * first [ ], vertex * s);
-
 
 void drawBox();
 void drawTBox(int nump);
-int clip(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut);
+void Intersect(vertex first, vertex second, vertex *clipBoundary, vertex *intersectPt);
+bool Inside(vertex testVertex, vertex *clipBoundary);
+void Output(vertex newVertex, int *outLength, vertex *outVertexArray);
+void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *outLength, vertex *clip_boundary);
+void Clip(vertex *inArray, vertex *outArray);

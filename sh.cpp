@@ -25,12 +25,12 @@ const int nClip = 4;
 int polygonClipSuthHodg(vertex wMin, vertex wMax, int n, vertex * pIn, vertex * pOut)
 {
 	extern struct vertex * treePants2;
-	//extern struct vertex * treePants1;
+	
 
 /* Parameter "first" holds pointer to first point processed for
  *  * * a boundary; "s" holds most recent point processed for boundary.
  *   * */
-	vertex * first[nClip] = { 0, 0, 0, 0 };//, treePants1[nClip];//s[nClip];
+	vertex * first[nClip] = { 0, 0, 0, 0 };
 	
 	int k, cnt = 0;
 	for(k = 0; k < n; k++)

@@ -5,6 +5,7 @@ struct vertex *treePoints;
 struct vertex *treePants;
 struct vertex *treePants1;
 struct vertex *treePants2;
+int *outputLength;
 float spin = 0.0;
 float deltaSpin = 0.0;
 float sf = 1.0;

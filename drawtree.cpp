@@ -267,9 +267,9 @@ void drawBox(void)
 void drawTBox(int nump)
 {
     extern struct vertex *treePants2;
-    int i;
+    //extern struct vertex *treePants1;
+	int i;
     vertex spot;
-    //glColor3i(1, 1, 0);
 	glBegin(GL_LINE_STRIP);
     for (i=0;i<nump;i++)
     {
