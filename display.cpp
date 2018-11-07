@@ -17,22 +17,45 @@ void display( void )
     
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
     glColor3f(1.0, 0.0, 0.0);
-	int arraySize = numPoints(200,600,450);
+	//int arraySize = numPoints(200,600,450);
     treePoints = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
-
+	//treePants = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	drawTree();	//draws og tree
-	
+	p = p + 5;
+	treePants = (struct vertex *) malloc((p)*sizeof(struct vertex));
 	treePants = treePoints;
-	struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));    
-    struct vertex *out = (struct vertex *) malloc((p)*sizeof(struct vertex));
-	in = treePants;
+	
+	/*vertex temp, copy;
+	int count = 0;
+	while(count < p)
+	{
+		temp = *(treePants + count);
+		cout << temp.x << " " << temp.y << endl;
+		//temp = *(treePoints + count);
+		//copy.x = temp.x;
+		//copy.y = temp.y;
+		*(treePants + count) = copy;
+		//cout << copy.x << " " << copy.y << endl;
+		count++;
+	}
+	cout << "done" << endl;*/
+	
+	int num = p+100000000;
+	//treePants = treePoints;
+	//struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));    
+    //struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
+	//in = treePants;
 	
 	Rotate(p);
 	Scale(p);
-	Reflect();
-	Clip(in, out);	
-	//glEnd();
-    //glFlush();
+	Reflect(p);
+	
+	//struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));
+    //struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
+    //in = treePants;
+
+	//Clip(in, out);	
+	
     glColor3f(1.0, 0.0, 0.0);
 	drawTTree(p);	//draws the transformed tree
 	
@@ -70,6 +93,7 @@ void display( void )
 	//cout << "f3" << endl;
 	drawTBox(p);
 //	cout << "f4" << endl;
-	*/	
+	*/
+	glFlush();	
 	glutSwapBuffers();
 }

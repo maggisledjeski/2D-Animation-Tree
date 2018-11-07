@@ -50,6 +50,7 @@ void keyboard(unsigned char key, int x, int y)
     extern float spin;
 	extern float sf;
     extern float rf;
+	extern int p;
 
   	//exits the program if q or Q is clicked
 	if(key == 'q' || key == 'Q') {
@@ -72,8 +73,20 @@ void keyboard(unsigned char key, int x, int y)
         {
         	spin = spin - 360;
         }
-        Reflect();
+        Reflect(p);
     }
+	if(key == 'f' || key == 'F') {
+        //fill tesselation
+    }
+	if(key == 't' || key == 'T') {
+        //tess outline
+		Tess();
+    }
+	if(key == 'l' || key == 'L') {
+        //get rid of tess stuff
+    }
+
+
 
 	
 }

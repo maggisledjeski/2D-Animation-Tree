@@ -2,7 +2,7 @@
 #include "prototypes.h"
 #include "constants.h"
 
-void Reflect(void)
+void Reflect(int num)
 {
     extern float rf;
 	
@@ -12,15 +12,15 @@ void Reflect(void)
 
 
     buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);
-    applyTrans1(tmp);
+    applyTrans(num, tmp);
 
     buildReflect(tmp);
-    applyTrans1(tmp);
+    applyTrans(num, tmp);
 	
 	rf = 0.0;	//sets the reflection back to 0
     
 	buildTrans(WINDOW_MAX/2, WINDOW_MAX/2, 0.0, tmp);
-    applyTrans1(tmp);
+    applyTrans(num, tmp);
 	
     glutPostRedisplay();
 

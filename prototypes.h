@@ -20,12 +20,19 @@ void vmMult (int SIZE, float *tmatrix, float *tvector);
 void applyTrans(int nump, float *tmatrix);
 void Rotate(int np);
 void Scale(int np);
-void Reflect(void);
+void Reflect(int num);
 void buildTrans(float x, float y, float z, float *tmatrix);
 void buildScale(float *tmatrix);
 void buildReflect(float *tmatrix);
 void scaleDisplay(void);
 void applyTrans1(float *tmatrix);
+
+void Tess(void);
+void fillTessPolygon(void);
+void drawLinSeg(vertex old_v, vertex new_v);
+bool linIntersect(linseg a, linseg b);
+vertex cp1(vertex v1, vertex v2, vertex v3);
+bool AngleCheck(vertex a, vertex b, vertex c, vertex d, vertex e, vertex f);
 
 
 void drawBox();

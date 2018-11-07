@@ -49,11 +49,12 @@ void Output(vertex newVertex, int *outLength, vertex *outVertexArray)
 /*s is the start of the edge, p is the end of the edge*/
 void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *outLength, vertex *clip_boundary)
 {
+	extern int *outputLength;
 	vertex s, p, i;
 	int j;
-	//cout << "sh1" << endl;
+	cout << "sh1" << inLength << endl;
 	*outLength = 0;
-	//cout << "sh2" << endl;
+	cout << "sh2" << endl;
 	s = inVertexArray[inLength - 1];	/* Start with the last vertex in inVertexArray */
 	for (j = 0; j < inLength; j++) {
 		//cout << "sh3" << endl;
@@ -82,7 +83,8 @@ void Clip(vertex *inArray, vertex *outArray)
 {
 	extern int *outputLength;
 	extern int p;
-	
+	cout << p << endl;
+	cout << outputLength << endl;	
 	struct vertex *bb = (struct vertex *) malloc((2)*sizeof(struct vertex));
 	vertex bbs, bbe;
 	bbs.x = 100;

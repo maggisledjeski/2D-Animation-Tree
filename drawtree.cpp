@@ -7,12 +7,12 @@ using namespace std;
 void drawTree()
 {
 	extern struct vertex *treePoints;
-    extern int p;
+    //extern int p;
 	vertex spot;
-    p = p + 6;
+    //p = p + 6;
 	//adding the trunk points to the treePoints array    
-    spot.x = 463;//458;
-    spot.y = 646;//642;
+    spot.x = 458;//463;//458;
+    spot.y = 641;//646;//642;
     spot.z = 0;
 	spot.w = 1;
     *(treePoints + 0) = spot;
@@ -45,7 +45,8 @@ void drawTree()
 	//cout << n.x << endl;
 	
 	circle(200,600,500);
-
+	//p = p + 5;
+	//cout << p << endl;
 	//draw the tree
 	/*int l = numPoints(200,600,450);
 	l = (6*l)+6;
@@ -192,7 +193,7 @@ void drawTTree(int nump)
     for (i=0;i<nump;i++)
     {
         spot = *(treePants + i);
-	//	cout << spot.x << " " << spot.y << endl;
+		//cout << spot.x << " " << spot.y << endl;
         glVertex2f(spot.x, spot.y);
     
     }
