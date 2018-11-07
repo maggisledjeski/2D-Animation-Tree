@@ -80,21 +80,19 @@ void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *ou
 
 void Clip(vertex *inArray, vertex *outArray)
 {
-	
 	extern int *outputLength;
-	//*outputLength = 0;
-	int startNum = 5;
+	extern int p;
 	
 	struct vertex *bb = (struct vertex *) malloc((2)*sizeof(struct vertex));
 	vertex bbs, bbe;
 	bbs.x = 100;
 	bbs.y = 100;
-	*(bb + 0 ) = bbs;
+	*(bb + 0) = bbs;
 	bbe.x = 900;
-	bbe.y = 900;
+	bbe.y = 100;
 	*(bb + 1) = bbe;
 	
-	shClip(inArray, outArray, startNum, outputLength, bb);
+	shClip(inArray, outArray, p, outputLength, bb);
 	
 	/*right clip
  	* shClip(outputArray, inputArray, clipBoundary)	*/

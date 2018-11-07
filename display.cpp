@@ -7,7 +7,8 @@ void display( void )
 {
     extern struct vertex *treePoints;
     extern struct vertex *treePants;	//what we transform
-    extern struct vertex *treePants1;
+    extern int p;
+	extern struct vertex *treePants1;
 	extern struct vertex *treePants2;
 
     glClear(GL_COLOR_BUFFER_BIT);  /*clear the window */
@@ -16,24 +17,25 @@ void display( void )
     
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
     glColor3f(1.0, 0.0, 0.0);
-	/*int arraySize = numPoints(200,600,450);
+	int arraySize = numPoints(200,600,450);
     treePoints = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 
 	drawTree();	//draws og tree
 	
 	treePants = treePoints;
+	struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));    
+    struct vertex *out = (struct vertex *) malloc((p)*sizeof(struct vertex));
+	in = treePants;
 	
-	int t = numPoints(200,600,450);
-    int tp = (6*t)+5;
-	    
-    Rotate(tp);
-	Scale(tp);
+	Rotate(p);
+	Scale(p);
 	Reflect();
-	
+	Clip(in, out);	
 	//glEnd();
     //glFlush();
-    drawTTree(tp);	//draws the transformed tree
-	*/
+    glColor3f(1.0, 0.0, 0.0);
+	drawTTree(p);	//draws the transformed tree
+	
 	/*vertex min;
     min.x = VIEWPORT_MIN;
     min.y = VIEWPORT_MIN;
@@ -42,7 +44,7 @@ void display( void )
     max.y = VIEWPORT_MAX;
     int num = 4;
 	*/
-	treePants1 = (struct vertex *) malloc((10)*sizeof(struct vertex));
+	/*treePants1 = (struct vertex *) malloc((10)*sizeof(struct vertex));
 	treePants2 = (struct vertex *) malloc((5)*sizeof(struct vertex));
 	struct vertex *out = (struct vertex *) malloc((5)*sizeof(struct vertex));
 	struct vertex *in = (struct vertex *) malloc((5)*sizeof(struct vertex));
@@ -50,9 +52,8 @@ void display( void )
 //cout << "f" <<endl;	
 	drawBox();
 	in = treePants2;
-	/*vertex n;
-    n = *(in+2);
-    cout << n.x << endl;*/
+
+
 //cout <<  << endl;
 	//pI = treePants1;
 	//treePants1 = treePants2;
@@ -69,6 +70,6 @@ void display( void )
 	//cout << "f3" << endl;
 	drawTBox(p);
 //	cout << "f4" << endl;
-		
+	*/	
 	glutSwapBuffers();
 }
