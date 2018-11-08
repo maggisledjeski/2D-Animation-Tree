@@ -33,7 +33,7 @@ void drawLinSeg(vertex old_v, vertex new_v);
 bool linIntersect(linseg a, linseg b);
 vertex cp1(vertex v1, vertex v2, vertex v3);
 bool AngleCheck(vertex a, vertex b, vertex c, vertex d, vertex e, vertex f);
-
+void Pipe(void);
 
 void drawBox();
 void drawTBox(int nump);

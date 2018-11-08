@@ -8,7 +8,10 @@ using namespace std;
 
 void Rotate(int np)
 {
-    float transMatrix[16];
+    //extern int p;
+	//cout << "p: " << p << " np: " << np<< endl;
+	
+	float transMatrix[16];
     float *tmp = &transMatrix[0];
 
     buildTrans(-WINDOW_MAX/2, -WINDOW_MAX/2, 0.0,tmp);

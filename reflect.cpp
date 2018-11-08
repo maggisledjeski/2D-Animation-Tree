@@ -26,6 +26,11 @@ void Reflect(int num)
 
 }
 
+//void reflectDisplay()
+//{
+	
+//}
+
 void buildReflect(float *tmatrix)
 {
     extern float rf;

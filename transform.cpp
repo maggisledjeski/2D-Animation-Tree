@@ -28,8 +28,11 @@ void vmMult(int SIZE, float *tmatrix, float *tvector)
 
 void applyTrans(int nump, float *tmatrix)
 {
-    extern struct vertex *treePants;
-    float tempV[4];
+    //extern struct vertex *treePoints;
+	extern struct vertex *treePants;
+    extern int p;
+	//cout << "trans p: " << p << " np: " << nump << endl;
+	float tempV[4];
     float *tmpV;
     int i;
 
@@ -45,12 +48,14 @@ void applyTrans(int nump, float *tmatrix)
         *(tmpV+1) = spot.y;
         *(tmpV+2) = spot.z;
         *(tmpV+3) = spot.w;
-        vmMult( 4, tmatrix, tmpV );
+    //    cout << i << " " << spot.x << " " << spot.y << endl;
+		vmMult( 4, tmatrix, tmpV );
 		ns.x = *(tmpV+0);
         ns.y = *(tmpV+1);
         ns.z = *(tmpV+2);
         ns.w = *(tmpV+3);
 		*(treePants + i) = ns;
+		//cout << i << " " << ns.x << " " << ns.y << endl;
     }
 
 }
