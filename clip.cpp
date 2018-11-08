@@ -38,7 +38,7 @@ bool Inside(vertex testVertex, vertex *clipBoundary)
 }
 
 /*this function is used to place the new vertex into the outVertexArray*/
-void Output(vertex newVertex, int *outLength, vertex *outVertexArray)
+void Output( vertex newVertex, int *outLength, vertex *outVertexArray)
 {
     printf("In Output with outLength = %i\n", *outLength);
 	(*outLength)++;
@@ -71,11 +71,16 @@ void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *ou
 			cout << "sh5" << endl;
 			if (Inside(s, clip_boundary)){
 				cout << "sh6" << endl;
-                cout << vp.x << endl;
-                cout << vp.y << endl;
+                cout << "                vp.x = " << vp.x << endl;
+                cout << "                vp.y = " << vp.y << endl;
 				Output(vp, outLength, outVertexArray);	/* Case 1 */
 				cout << "sh7" << endl;
 			}else {						/* Case 4 */
+				cout << "sh8" << endl;
+                cout << "                 s.x = " <<  s.x << endl;
+                cout << "                 s.y = " <<  s.y << endl;
+                cout << "                vp.x = " << vp.x << endl;
+                cout << "                vp.y = " << vp.y << endl;
 				Intersect(s, vp, clip_boundary, &i);
 				Output(i, outLength, outVertexArray);
 				Output(vp, outLength, outVertexArray);
