@@ -1,9 +1,9 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
-struct vertex {
+typedef struct vertex {
     int x, y, z, w;
-};
+} vertex ;
 
 struct linseg {
     vertex one;
