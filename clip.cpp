@@ -49,10 +49,9 @@ void Output(vertex newVertex, int *outLength, vertex *outVertexArray)
 /*s is the start of the edge, p is the end of the edge*/
 void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *outLength, vertex *clip_boundary)
 {
-	extern int *outputLength;
 	vertex s, p, i;
 	int j;
-	cout << "sh1" << inLength << endl;
+	cout << "sh1 out: " << outLength << " " << endl; //*outLength << endl;
 	*outLength = 0;
 	cout << "sh2" << endl;
 	s = inVertexArray[inLength - 1];	/* Start with the last vertex in inVertexArray */

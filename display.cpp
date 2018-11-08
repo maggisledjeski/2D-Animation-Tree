@@ -25,36 +25,19 @@ void display( void )
 	treePants = (struct vertex *) malloc((p)*sizeof(struct vertex));
 	treePants = treePoints;
 	
-	/*vertex temp, copy;
-	int count = 0;
-	while(count < p)
-	{
-		temp = *(treePants + count);
-		cout << temp.x << " " << temp.y << endl;
-		//temp = *(treePoints + count);
-		//copy.x = temp.x;
-		//copy.y = temp.y;
-		*(treePants + count) = copy;
-		//cout << copy.x << " " << copy.y << endl;
-		count++;
-	}
-	cout << "done" << endl;*/
 	
 	int num = p+100000000;
-	//treePants = treePoints;
-	//struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));    
-    //struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
-	//in = treePants;
 	
 	Rotate(p);
 	Scale(p);
 	Reflect(p);
 	
-	//struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));
-    //struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
-    //in = treePants;
+	struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));
+    struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
+    in = treePants;
 
-	//Clip(in, out);	
+	//Clip(in, out);
+	
 	
     glColor3f(1.0, 0.0, 0.0);
 	drawTTree(p);	//draws the transformed tree
