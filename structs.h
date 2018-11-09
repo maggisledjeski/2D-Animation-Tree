@@ -2,7 +2,7 @@
 #define STRUCTS_H
 
 typedef struct vertex {
-    int x, y, z, w;
+    float x, y, z, w;
 } vertex ;
 
 struct linseg {

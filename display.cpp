@@ -14,15 +14,15 @@ void display( void )
     glClear(GL_COLOR_BUFFER_BIT);  /*clear the window */
 
     glColor3f(1.0, 1.0, 1.0 );    /* Draw in Blue */
-    
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
+
     glColor3f(1.0, 0.0, 0.0);
 	//int arraySize = numPoints(200,600,450);
     treePoints = ( vertex *) malloc((10000)*sizeof(vertex));
 	//treePants = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	drawTree();	//draws og tree
 	p = p + 5;
-	treePants = (vertex *) malloc((p)*sizeof( vertex));
+	treePants = (vertex *) malloc( p*sizeof( vertex));
 	treePants = treePoints;
 	
 	vertex temp, copy;
