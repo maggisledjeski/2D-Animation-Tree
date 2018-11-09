@@ -48,13 +48,13 @@ bool Inside(vertex testVertex, vertex *clipBoundary)
 /*this function is used to place the new vertex into the outVertexArray*/
 void Output( vertex newVertexPoint, int *outLength, vertex *outVertexArray)
 {
-    printf("In Output with outLength = %i\n", *outLength);
+    //printf("In Output with outLength = %i\n", *outLength);
     (*outLength)++;
-    printf("In Output with outLength = %i\n", *outLength);
-    printf("  In Output newVertex.x = %f\n", newVertexPoint.x);
-    printf("  In Output newVertex.y = %f\n", newVertexPoint.y);
+    //printf("In Output with outLength = %i\n", *outLength);
+    //printf("  In Output newVertex.x = %f\n", newVertexPoint.x);
+    //printf("  In Output newVertex.y = %f\n", newVertexPoint.y);
 
-    printf("  Index is = %i\n", *outLength - 1);
+    //printf("  Index is = %i\n", *outLength - 1);
 
     outVertexArray[*outLength - 1].x = newVertexPoint.x;
     outVertexArray[*outLength - 1].y = newVertexPoint.y;
@@ -66,6 +66,7 @@ void shClip(vertex *inVertexArray, vertex *outVertexArray, int inLength, int *ou
 {
     vertex s, vp, i;
     int j;
+    *outLength = 0;
     cout << "sh1 in: " << inLength << " " << endl; //*outLength << endl;
     cout << "sh1 out: " << *outLength << " " << endl; //*outLength << endl;
     cout << "sh2" << endl;
