@@ -1,6 +1,6 @@
 CC = c++ 
 CFLAGS = -g
-LDLIBS = -lGL -lGLU -lglut -lX11 -lm
+LDLIBS = -L/usr/lib64 -lGL -lGLU -lglut -lX11 -lm
 OBJS = myinit.o display.o drawtree.o rotate.o keyboardmouse.o transform.o scale.o \
        reflect.o clip.o tess.o pipe.o drawcircle.o #put object files here put a space to separate
 

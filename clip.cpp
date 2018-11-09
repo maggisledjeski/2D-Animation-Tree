@@ -120,15 +120,7 @@ void Clip(vertex *inArray, vertex *outArray)
     cout << " Size of P is " << p << endl;
    // vertex *bb =  (vertex*)  malloc((2)*sizeof( vertex));
     vertex bb[2];
-    /*
-    vertex bbs, bbe;
-    bbs.x = 100;
-    bbs.y = 100;
-    *(bb + 0) = bbs;
-    bbe.x = 900;
-    bbe.y = 900;
-    *(bb + 1) = bbe;
-    */
+
     bb[0].x = 100;
     bb[0].y = 100;
     bb[1].x = 900;
