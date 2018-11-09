@@ -22,6 +22,14 @@ void Intersect(vertex first, vertex second, vertex *clipBoundary, vertex *inters
  * of the clip boundary"*/
 bool Inside(vertex testVertex, vertex *clipBoundary)
 {
+    cout << "In inside: " << endl;
+    cout << "          clipBoundary[0].x " << clipBoundary[0].x << endl;
+    cout << "          clipBoundary[0].y " << clipBoundary[0].y << endl;
+    cout << "          clipBoundary[1].x " << clipBoundary[1].x << endl;
+    cout << "          clipBoundary[1].y " << clipBoundary[1].y << endl;
+    cout << "               testVertex.x " << testVertex.x << endl;
+    cout << "               testVertex.y " << testVertex.y << endl;
+
     if (clipBoundary[1].x > clipBoundary[0].x)	/*bottom*/
         if (testVertex.y >= clipBoundary[0].y)
             return true;
