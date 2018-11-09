@@ -124,7 +124,7 @@ void Clip(vertex *inArray, vertex *outArray)
     bb[0].x = 100;
     bb[0].y = 100;
     bb[1].x = 900;
-    bb[1].y = 900;
+    bb[1].y = 100;
 
     inputLength = p;
 
@@ -137,8 +137,26 @@ void Clip(vertex *inArray, vertex *outArray)
     cout << "  -- inputLength  (pre clip) = " << inputLength << endl;
 
     shClip(inArray, outArray, inputLength, &outputLength, bb);
+
+    bb[0].x = 900;
+    bb[0].y = 100;
+    bb[1].x = 900;
+    bb[1].y = 900;
+
     shClip(outArray, inArray, outputLength, &inputLength, bb);
+
+    bb[0].x = 900;
+    bb[0].y = 900;
+    bb[1].x = 100;
+    bb[1].y = 900;
+
     shClip(inArray, outArray, inputLength, &outputLength, bb);
+
+    bb[0].x = 100;
+    bb[0].y = 900;
+    bb[1].x = 100;
+    bb[1].y = 100;
+
     shClip(outArray, inArray, outputLength, &inputLength, bb);
 
     cout << "Finished clipper" << endl;
