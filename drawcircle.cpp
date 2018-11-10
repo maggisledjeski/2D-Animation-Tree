@@ -66,10 +66,12 @@ void MidpointCircle(int radius, int cx, int cy)
     }
 	//cout << count << endl;
 	glPointSize(1);
+    /* 
 	glColor3f(0.0, 0.0, 0.0 );
     glBegin(GL_POINTS);
 	pointPtr = points;
 	int i = 0;
+    
 	while(i != count)
 	{
 		glVertex2i(pointPtr->x, pointPtr->y);
@@ -90,6 +92,7 @@ void MidpointCircle(int radius, int cx, int cy)
 	}
 	glEnd();
 	glFlush();
+    */
 }
 
 void drawReverse(int radius, int cx, int cy)
@@ -112,10 +115,12 @@ void drawReverse(int radius, int cx, int cy)
             x++;
             y--;
         }
+        /*
         glPointSize(1);
         glBegin(GL_POINTS);
         glVertex2i(y+cy,x+cx);
         glEnd();
         glFlush();
+        */
     }
 }

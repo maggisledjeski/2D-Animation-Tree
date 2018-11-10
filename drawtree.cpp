@@ -273,6 +273,7 @@ void drawTBox(int nump)
     //extern struct vertex *treePants1;
 	int i;
     vertex spot;
+    /*
 	glBegin(GL_LINE_STRIP);
     for (i=0;i<nump;i++)
     {
@@ -281,5 +282,5 @@ void drawTBox(int nump)
 
     }
     glEnd();
-
+    */
 }

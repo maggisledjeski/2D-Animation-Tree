@@ -1,10 +1,12 @@
+#include "structs.h"
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-struct vertex *treePoints;
-struct vertex *treePants;
-struct vertex *treePants1;
-struct vertex *treePants2;
+vertex *treePoints;
+vertex *treePants;
+vertex *treePants1;
+vertex *treePants2;
 int p;
 int *outputLength;
 float spin = 0.0;

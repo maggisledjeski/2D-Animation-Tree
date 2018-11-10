@@ -5,24 +5,24 @@
 
 void display( void )
 {
-    extern struct vertex *treePoints;
-    extern struct vertex *treePants;	//what we transform
+    extern vertex *treePoints;
+    extern vertex *treePants;	//what we transform
     extern int p;
-	extern struct vertex *treePants1;
-	extern struct vertex *treePants2;
+	extern vertex *treePants1;
+	extern vertex *treePants2;
 
     glClear(GL_COLOR_BUFFER_BIT);  /*clear the window */
 
     glColor3f(1.0, 1.0, 1.0 );    /* Draw in Blue */
-    
     glRecti(VIEWPORT_MIN, VIEWPORT_MIN, VIEWPORT_MAX, VIEWPORT_MAX);
+
     glColor3f(1.0, 0.0, 0.0);
 	//int arraySize = numPoints(200,600,450);
-    treePoints = (struct vertex *) malloc((10000)*sizeof(struct vertex));
+    treePoints = ( vertex *) malloc((10000)*sizeof(vertex));
 	//treePants = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	drawTree();	//draws og tree
 	p = p + 5;
-	treePants = (struct vertex *) malloc((p)*sizeof(struct vertex));
+	treePants = (vertex *) malloc( p*sizeof( vertex));
 	treePants = treePoints;
 	
 	vertex temp, copy;
@@ -38,7 +38,7 @@ void display( void )
 	cout << "treePants done" << endl;
 
 	
-	int num = p+10000;
+	int num = p*2;
 	
 	Rotate(p);
 	Scale(p);
@@ -46,25 +46,30 @@ void display( void )
 	
 	
 
-	struct vertex *in = (struct vertex *) malloc((p)*sizeof(struct vertex));
-    struct vertex *out = (struct vertex *) malloc((num)*sizeof(struct vertex));
+    printf("num is %d\n", num);
+    vertex *in = (vertex *) malloc((num)*sizeof( vertex));
+    vertex *out = (vertex *) malloc((num)*sizeof( vertex));
     in = treePants;
-	//this prints out all of the *in to show that it has all of treePants
-	cout << p << endl;
-	count = 0;
-	while(count < p)
+    //this prints out all of the *in to show that it has all of treePants
+    cout << p << endl;
+    count = 0;
+    while(count < p)
     {
-temp = *(in + count);
-		cout << count << " " << temp.x << " " << temp.y << endl;
-		    
-    count++;
-    }
-    cout << "in done" << endl;
+        temp = *(in + count);
+        cout << count << " " << temp.x << " " << temp.y << endl;
 
-	//Clip(in, out);
+        count++;
+    }
+    cout << "im done" << endl;
+
+    cout << "about to call clipper" << endl; 
+    Clip(in, out);
+    cout << "done with clipper" << endl; 
+
+    treePants = in;
 
     glColor3f(1.0, 0.0, 0.0);
-	drawTTree(p);	//draws the transformed tree
-		
-	glutSwapBuffers();
+    drawTTree(p);	//draws the transformed tree
+
+    glutSwapBuffers();
 }

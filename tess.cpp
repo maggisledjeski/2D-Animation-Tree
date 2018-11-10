@@ -7,7 +7,7 @@ void Tess(void)
 	extern struct vertex *tessPants;
 	
 	extern int p;
-	drawTTree(p);
+	//drawTTree(p);
 	
 	bool advanceStart = false;
 	
@@ -261,11 +261,13 @@ void drawLinSeg(vertex old_v, vertex new_v)
     	old_v.x = new_v.x;
         old_v.y = new_v.y;
 	}
+    /*
     glBegin(GL_LINE_LOOP);
     glVertex2f(old_v.x,old_v.y);
     glVertex2f(new_v.x,new_v.y);
     glEnd();
     glFlush();
+    */
 }
 
 
