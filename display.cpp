@@ -67,7 +67,7 @@ void display( void )
     cout << "done with clipper" << endl; 
 
     treePants = in;
-
+    
     glColor3f(1.0, 0.0, 0.0);
     drawTTree(p);	//draws the transformed tree
 

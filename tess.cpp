@@ -184,26 +184,51 @@ void Tess(void)
     t.tthree = v3;
     TList.push_back(t);
 	
-	//convert list back to array, maybe?
-	//int sizeCount = Tlist.size() + p;
-	
 	for(list<triangle>::iterator g=TList.begin(); g!=TList.end(); g++)
     {
-        /*cout << "Triangle: " << endl;
-        cout << (*g).tone.x << " " << (*g).tone.y << endl;
-        cout << (*g).ttwo.x << " " << (*g).ttwo.y << endl;
-        cout << (*g).tthree.x << " " << (*g).tthree.y << endl;*/
-
-		drawLinSeg((*g).tone,(*g).ttwo);    //draws the tesselation line segment
+        drawLinSeg((*g).tone,(*g).ttwo);    //draws the tesselation line segment
         drawLinSeg((*g).tthree,(*g).ttwo);  //draws the line segment between vertices 2 and 3
         drawLinSeg((*g).tone,(*g).tthree);  //draws the line segment between vertices 1 and 3
 	}
+
+/*convert fl back to array*/
+    int sizeCount = 2*(TList.size()) + p;   /*this will just add the tess line, may need to add the triangle*/
+    tessPants = (struct vertex *) malloc((sizeCount)*sizeof(struct vertex));
+    vertex s;
+    int c1 = 0;
+    for(list<vertex>::iterator it=fl.begin(); it!=fl.end(); it++)
+    {
+        s.x = (*it).x;
+        s.y = (*it).y;
+        s.z = 0;
+        s.w = 1;
+        *(tessPants + c1) = s;
+        c1++;
+    }
+    /*now need to add the triangles to the list*/
+    triangle t1;
+    vertex a, b, c;
+    t1.tone = a;
+    t1.ttwo = b;
+    t1.tthree = c;
+    int c2 = 1;
+    for(list<triangle>::iterator g=TList.begin(); g!=TList.end(); g++)
+    {
+        spot = (*g).tone;
+        *(tessPants + c1 + c2) = spot;
+        c2++;
+        spot = (*g).ttwo;
+        *(tessPants + c1 + c2) = spot;
+        c2++;
+
+    }
+
 	
 }
 
 vertex cp1(vertex v1, vertex v2, vertex v3)
 {
-vertex a,b;
+    vertex a,b;
     a.x = v1.x - v2.x;
     a.y = v1.y - v2.y;
     a.z = 0.0;
@@ -211,12 +236,12 @@ vertex a,b;
     b.y = v3.y - v2.y;
     b.z = 0.0;
 
-float t1 = a.y*b.z;
+    float t1 = a.y*b.z;
     float t2 = a.z*b.y;
     float x = (a.y*b.z) - (a.z*b.y);
     float y = (b.z*a.x) - (b.x*a.z);
     float z = (a.x*b.y) - (a.y*b.x);
- vertex cpv;
+    vertex cpv;
     cpv.x = x;
     cpv.y = y;
     cpv.z = z;
@@ -228,7 +253,7 @@ bool AngleCheck(vertex a, vertex b, vertex c, vertex d, vertex e, vertex f)
 {
     bool interior = true;
     
-vertex v1,v2,v3;
+    vertex v1,v2,v3;
     v1.x = b.x - a.x;
     v1.y = b.y - a.y;
     v2.x = d.x - c.x;
@@ -236,13 +261,13 @@ vertex v1,v2,v3;
     v3.x = f.x - e.x;
     v3.y = f.y - e.y;
 	
-float dpa = (v1.x*v2.x) + (v1.y*v2.y);
+    float dpa = (v1.x*v2.x) + (v1.y*v2.y);
 	float dpb = (v2.x*v3.x) + (v2.y*v3.y);
 
-float v1m = sqrt((pow(v1.x,2.0))+(pow(v1.y,2.0)));
+    float v1m = sqrt((pow(v1.x,2.0))+(pow(v1.y,2.0)));
     float v2m = sqrt((pow(v2.x,2.0))+(pow(v2.y,2.0)));
 	float v3m = sqrt((pow(v3.x,2.0))+(pow(v3.y,2.0)));
-float alpha = acos((dpa/(v1m*v2m)));
+    float alpha = acos((dpa/(v1m*v2m)));
     float beta = acos((dpb/(v2m*v3m)));
     
 if(alpha > beta)
@@ -261,20 +286,21 @@ void drawLinSeg(vertex old_v, vertex new_v)
     	old_v.x = new_v.x;
         old_v.y = new_v.y;
 	}
-    /*
+    
     glBegin(GL_LINE_LOOP);
     glVertex2f(old_v.x,old_v.y);
     glVertex2f(new_v.x,new_v.y);
-    glEnd();
-    glFlush();
-    */
+//    glEnd();
+//    glFlush();
+    
+
 }
 
 
 bool linIntersect(linseg a, linseg b)
 {
     bool intersect = false;
-int P1 = b.one.x - a.one.x;
+    int P1 = b.one.x - a.one.x;
     int P2 = -(b.two.x - b.one.x);
     int P3 = b.one.y - a.one.y;
     int P4 = -(b.two.y - b.one.y);
@@ -288,17 +314,17 @@ int P1 = b.one.x - a.one.x;
     float P10 = b.one.x - a.one.x;
     float P11 = a.two.y - a.one.y;
     float P12 = b.one.y - a.one.y;
-float d1 = (P1*P4) - (P2*P3);
+    float d1 = (P1*P4) - (P2*P3);
     float d2 = (P5*P8) - (P6*P7);	
-float d3 = (P9*P12) - (P10*P11);
+    float d3 = (P9*P12) - (P10*P11);
 
     float ua = d1/d2;
     float ub = d3/d2;
- if(((0.0 < ua) && (ua < 1.0)) && (((0.0 < ub) && (ub < 1.0))))
+    if(((0.0 < ua) && (ua < 1.0)) && (((0.0 < ub) && (ub < 1.0))))
     {
 		intersect = true;
     }
-float x = a.one.x + ua*(a.two.x - a.one.x);
+    float x = a.one.x + ua*(a.two.x - a.one.x);
     float y = a.one.y + ua*(a.two.y - a.one.y);
     
     return intersect;

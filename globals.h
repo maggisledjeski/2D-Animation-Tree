@@ -5,8 +5,7 @@
 
 vertex *treePoints;
 vertex *treePants;
-vertex *treePants1;
-vertex *treePants2;
+vertex *tessPants;
 int p;
 int *outputLength;
 float spin = 0.0;
