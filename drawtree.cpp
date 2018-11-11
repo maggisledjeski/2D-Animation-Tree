@@ -35,36 +35,8 @@ void drawTree()
 	spot.z = 0;
     spot.w = 1;
     *(treePoints + 4) = spot;
-    /*spot.x = 458;
-    spot.y = 359;
-	spot.z = 0;
-    spot.w = 1;
-    *(treePoints + 5) = spot;
-	*///vertex n;
-	//n = *(treePoints+2);
-	//cout << n.x << endl;
 	
 	circle(200,600,500);
-	//p = p + 5;
-	//cout << p << endl;
-	//draw the tree
-	/*int l = numPoints(200,600,450);
-	l = (6*l)+6;
-	int f = 0;
-    vertex s;
-    glColor3f(0.0, 0.0, 0.0 );
-    glBegin(GL_LINE_STRIP);
-    while(f != l)
-    {
-
-        s = *(treePoints + f);
-        //cout << s.x << " " << s.y << endl;
-        glVertex2i(s.x, s.y);
-        f++;
-    }
-    glEnd();
-    glFlush();
-*/
 	
 }
 
@@ -108,22 +80,18 @@ void circle(int radius, int cx, int cy)
         pointPtr++;
         count++;
 	}
-	//cout << "count: " << count << endl;
 	glPointSize(1);
     glColor3f(0.0, 0.0, 0.0 );
     glBegin(GL_POINTS);
     pointPtr = points;
     vertex *endPoint = NULL;
 	int i = 0;
-    while(i < count)//!= count)
+    while(i < count)
     {
-        //cout << pointPtr->x << " " << pointPtr->y << endl;
-		//glVertex2i(pointPtr->x, pointPtr->y);
         pointPtr++;
         i++;		
     }
 	pointPtr--;
-	//p = num;
 	int num = (6*count);
     p = num;
 	vertex q1[num];
@@ -183,19 +151,46 @@ void circle(int radius, int cx, int cy)
 	return ;
 }
 
+/*draws the transformed tree*/
 void drawTTree(int nump)
 {
 	extern struct vertex *treePants;
-	int i;
-	//cout << nump << endl;
-    vertex spot;
-    glBegin(GL_LINE_STRIP);
-    for (i=0;i<nump;i++)
+    extern struct triangle *triPants;
+    extern list <triangle> TList;
+    extern bool tess_flag;
+    extern int tess_count;
+
+    if(tess_flag = true)
     {
-        spot = *(treePants + i);
-		//cout << spot.x << " " << spot.y << endl;
-        glVertex2f(spot.x, spot.y);
+        glBegin(GL_LINE_STRIP);
+        triangle td;
+        vertex ts1, ts2, ts3;
+        int tcount = 0;
+        while(tcount < tess_count)
+        {
+            td = *(triPants + tcount);
+            ts1 = td.tone;
+            ts2 = td.ttwo;
+            ts3 = td.tthree;
+            glVertex2f(ts1.x, ts1.y);
+            glVertex2f(ts2.x, ts2.y);
+            glVertex2f(ts3.x, ts3.y);
+            tcount++;
+        }
+        //glEnd();
     
+    
+    } else
+    {
+	    int i;
+
+        vertex spot;
+        glBegin(GL_LINE_STRIP);
+        for (i=0;i<nump;i++)
+        {
+            spot = *(treePants + i);
+            glVertex2f(spot.x, spot.y);
+        }
     }
     glEnd();
 
@@ -226,7 +221,6 @@ int numPoints(int radius, int cx, int cy)
         }
         count++;
     }
-    //cout << "count: " << count << endl;
 	return count;
 }
 

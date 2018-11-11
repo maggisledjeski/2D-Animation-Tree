@@ -5,9 +5,9 @@ void Tess(void)
 {
 	extern struct vertex *treePants;
 	extern struct vertex *tessPants;
-	
+    extern int tess_count;	
 	extern int p;
-	//drawTTree(p);
+    extern struct triangle *triPants;
 	
 	bool advanceStart = false;
 	
@@ -183,16 +183,37 @@ void Tess(void)
     t.ttwo = v2;
     t.tthree = v3;
     TList.push_back(t);
-	
+	int tri_count = 0;
 	for(list<triangle>::iterator g=TList.begin(); g!=TList.end(); g++)
     {
-        drawLinSeg((*g).tone,(*g).ttwo);    //draws the tesselation line segment
-        drawLinSeg((*g).tthree,(*g).ttwo);  //draws the line segment between vertices 2 and 3
-        drawLinSeg((*g).tone,(*g).tthree);  //draws the line segment between vertices 1 and 3
-	}
+    //    drawLinSeg((*g).tone,(*g).ttwo);    /*draws the tesselation line segment*/
+    //    drawLinSeg((*g).tthree,(*g).ttwo);  /*draws the line segment between vertices 2 and 3*/
+    //    drawLinSeg((*g).tone,(*g).tthree);  /*draws the line segment between vertices 1 and 3*/
+	    tri_count++;
+    }
+
+    triPants = (struct triangle *) malloc((tri_count)*sizeof(struct triangle));
+    triangle trip;
+    vertex tv1, tv2, tv3;
+    int tcc = 0;
+    for(list<triangle>::iterator th=TList.begin(); th!=TList.end(); th++)
+    {
+        tv1.x = (*th).tone.x;
+        tv1.y = (*th).tone.y;
+        tv2.x = (*th).ttwo.x;
+        tv2.y = (*th).ttwo.y;
+        tv3.x = (*th).tthree.x;
+        tv3.y = (*th).tthree.y;
+        trip.tone = tv1;
+        trip.ttwo = tv2;
+        trip.tthree = tv3;
+        *(triPants + tcc) = trip;
+        tcc++;
+    }      
 
 /*convert fl back to array*/
     int sizeCount = 2*(TList.size()) + p;   /*this will just add the tess line, may need to add the triangle*/
+    tess_count = sizeCount;
     tessPants = (struct vertex *) malloc((sizeCount)*sizeof(struct vertex));
     vertex s;
     int c1 = 0;

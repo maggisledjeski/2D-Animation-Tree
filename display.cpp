@@ -22,21 +22,18 @@ void display( void )
 	//treePants = (struct vertex *) malloc((1000000)*sizeof(struct vertex));
 	drawTree();	//draws og tree
 	p = p + 5;
-	treePants = (vertex *) malloc( p*sizeof( vertex));
+	treePants = (vertex *) malloc(p*sizeof( vertex));
 	treePants = treePoints;
 	
 	vertex temp, copy;
   	int count = 0;
-	//this prints out all of treePants to show that it has all of treePoints
- 	cout << p << endl;
+
 	while(count < p)
  	{
  	temp = *(treePants + count);
  	cout << count << " " << temp.x << " " << temp.y << endl;
  	count++;
 	}
-	cout << "treePants done" << endl;
-
 	
 	int num = p*2;
 	
@@ -67,7 +64,7 @@ void display( void )
     cout << "done with clipper" << endl; 
 
     treePants = in;
-    
+    Tess();
     glColor3f(1.0, 0.0, 0.0);
     drawTTree(p);	//draws the transformed tree
 
