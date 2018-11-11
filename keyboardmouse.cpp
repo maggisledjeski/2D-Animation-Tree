@@ -82,7 +82,7 @@ void keyboard(unsigned char key, int x, int y)
 	if(key == 't' || key == 'T') {
         if(tess_flag == false)
         {
-		//    Tess();
+		    
             tess_flag = true;
         } else
         {

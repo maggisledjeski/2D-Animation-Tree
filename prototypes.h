@@ -35,8 +35,6 @@ vertex cp1(vertex, vertex, vertex);
 bool AngleCheck(vertex, vertex, vertex, vertex, vertex, vertex);
 void Pipe(void);
 
-void drawBox();
-void drawTBox(int );
 void Intersect(vertex, vertex, vertex*, vertex*);
 bool Inside(vertex, vertex*);
 void Output(vertex , int*, vertex*);

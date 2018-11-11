@@ -193,6 +193,25 @@ void Tess(void)
     }
 
     triPants = (struct triangle *) malloc((tri_count)*sizeof(struct triangle));
+    triangle tz;
+    vertex tz1, tz2, tz3;
+    int tzc = 0;
+    while(tzc < tri_count)
+    {
+        //tz = *(triPants + tzc);
+        tz1.x = 0;
+        tz1.y = 0;
+        tz2.x = 0;
+        tz2.y = 0;
+        tz3.x = 0;
+        tz3.y = 0;
+        tz.tone = tz1;
+        tz.ttwo = tz2;
+        tz.tthree = tz3;
+        *(triPants + tzc) = tz;
+        tzc++;
+    }
+
     triangle trip;
     vertex tv1, tv2, tv3;
     int tcc = 0;

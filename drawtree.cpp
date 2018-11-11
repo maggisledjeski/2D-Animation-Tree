@@ -160,7 +160,7 @@ void drawTTree(int nump)
     extern bool tess_flag;
     extern int tess_count;
 
-    if(tess_flag = true)
+    if(tess_flag == true)
     {
         glBegin(GL_LINE_STRIP);
         triangle td;
@@ -177,8 +177,8 @@ void drawTTree(int nump)
             glVertex2f(ts3.x, ts3.y);
             tcount++;
         }
-        //glEnd();
-    
+        glEnd();
+        glFlush();
     
     } else
     {
@@ -193,7 +193,7 @@ void drawTTree(int nump)
         }
     }
     glEnd();
-
+    glFlush();
 }
 
 int numPoints(int radius, int cx, int cy)
