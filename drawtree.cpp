@@ -177,8 +177,7 @@ void drawTTree(int nump)
             glVertex2f(ts3.x, ts3.y);
             tcount++;
         }
-        glEnd();
-        glFlush();
+        
     
     } else
     {
